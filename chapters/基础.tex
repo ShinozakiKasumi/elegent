@@ -1,0 +1,256 @@
+	\makechapteropener
+	{一} 
+	{基础} 
+	{将一个难题分解为若干个更小的、可解决的部分，是攻克它的第一步。} 
+	{勒内·笛卡尔 (René Descartes)} 
+	
+	\chapter{基础}
+	
+	\lettrine{在}{正式踏上}高中数学的复习征途之前，我们需要进行一次彻底的“热身”与“装备检查”.本章并非全新的知识，而是对那些贯穿整个高中数学、须臾不可离的基础技能与核心思想的再强化，基础不稳，寸步难行.让我们开始吧.
+	
+\begin{introduction}[知识概括]
+	\item \textbf{因式分解:} \label{intro:factor} 系统掌握提公因式、公式法、十字相乘法、分组分解法四大基本技巧，并学会高次多项式的猜根与综合除法.
+	\item \textbf{一元二次方程根的分布:} \label{intro:roots_dist} 这是连接函数、方程、不等式的核心难点.关键在于掌握判别式、对称轴、端点函数值这“三大抓手”，将根的几何位置问题转化为代数不等式组问题.
+	\item \textbf{核心计算与变形技巧:} \label{intro:techniques} 熟练运用配方法、换元法、待定系数法等“万金油”式的代数技巧，它们是化繁为简、解决复杂问题的钥匙.
+\end{introduction}
+	
+	\section{因式分解核心技巧}
+	
+	因式分解是多项式乘法的逆运算，是将一个多项式化为若干个整式的乘积的形式.它是解方程、化简分式、研究函数性质的基础.掌握其方法，是代数运算能力的基石.
+	
+	\subsection{提公因式法}
+	这是所有因式分解方法中最优先考虑的方法.其核心是找到多项式各项中都含有的公共的因式（可以是单项式，也可以是多项式），然后将其提取出来.
+	\begin{exercise}
+		分解因式：$3x(a-b) - 2y(b-a)$.
+	\end{exercise}
+	\begin{solution}
+		观察到 $(b-a) = -(a-b)$，所以两项中含有公因式 $(a-b)$.
+		\begin{align*}
+			3x(a-b) - 2y(b-a) &= 3x(a-b) - 2y[-(a-b)] \\
+			&= 3x(a-b) + 2y(a-b) \\
+			&= (a-b)(3x+2y)
+		\end{align*}
+	\end{solution}
+	\qed
+	
+	\subsection{公式法}
+	熟练运用乘法公式的逆运算，是快速分解特定形式多项式的关键.
+	\begin{itemize}
+		\item \textbf{平方差公式}: $a^2-b^2=(a+b)(a-b)$
+		\item \textbf{完全平方公式}: $a^2 \pm 2ab + b^2 = (a \pm b)^2$
+		\item \textbf{立方和/差公式}: $a^3 \pm b^3 = (a \pm b)(a^2 \mp ab + b^2)$
+	\end{itemize}
+	\begin{exercise}
+		分解因式：$x^4 - 16$.
+	\end{exercise}
+	\begin{solution}
+		该式可看作 $(x^2)^2 - 4^2$，首先应用平方差公式.
+		\begin{align*}
+			x^4 - 16 &= (x^2)^2 - 4^2 \\
+			&= (x^2-4)(x^2+4) \\
+			&= (x-2)(x+2)(x^2+4)
+		\end{align*}
+		注意：分解务必彻底，$x^2-4$ 还可以继续分解.$x^2+4$ 在实数范围内不能再分解.
+	\end{solution}
+	\qed
+	
+	\subsection{十字相乘法}
+	这是分解二次三项式 $ax^2+bx+c$ 的核心技巧.其本质是寻找两个数，使其和为一次项系数，积为常数项与二次项系数的乘积.
+	\begin{exercise}
+		分解因式：$6x^2 - 5x - 4$.
+	\end{exercise}
+	\begin{solution}
+		我们将首项 $6x^2$ 分解为 $2x \cdot 3x$，将常数项 $-4$ 分解为 $1 \cdot (-4)$ 或 $-1 \cdot 4$ 等.通过尝试，我们发现：
+		\begin{center}
+			\begin{tikzpicture}
+				\node at (0,0.5) {$2x$};
+				\node at (0,-0.5) {$3x$};
+				\node at (2,0.5) {$1$};
+				\node at (2,-0.5) {$-4$};
+				\draw (0.3,0.5) -- (1.7,-0.5);
+				\draw (0.3,-0.5) -- (1.7,0.5);
+				\node[right, blue] at (2.5, 0) {交叉乘积和: $(2x)(-4) + (3x)(1) = -8x+3x = -5x$};
+			\end{tikzpicture}
+		\end{center}
+		交叉乘积之和等于一次项系数 $-5x$，所以分解成功.
+		$6x^2 - 5x - 4 = (2x+1)(3x-4)$.
+	\end{solution}
+	\qed
+	
+	\subsection{分组分解法}
+	对于四项或四项以上的多项式，如果不能直接提公因式或套公式，可以尝试将其合理分组，使组内能分解，进而使组与组之间产生新的公因式.
+	\begin{itemize}
+		\item \textbf{二二分组}: 例如 $am+an+bm+bn = (am+an)+(bm+bn)$.
+		\item \textbf{三一分组}: 通常是三项构成完全平方式，再与剩下的一项构成平方差.
+	\end{itemize}
+	\begin{exercise}
+		分解因式：$x^2 - 4y^2 + 2x + 1$.
+	\end{exercise}
+	\begin{solution}
+		观察到 $x^2, 2x, 1$ 这三项可以构成完全平方式.
+		\begin{align*}
+			x^2 - 4y^2 + 2x + 1 &= (x^2 + 2x + 1) - 4y^2 \\
+			&= (x+1)^2 - (2y)^2 \\
+			&= [(x+1)-2y][(x+1)+2y] \\
+			&= (x-2y+1)(x+2y+1)
+		\end{align*}
+	\end{solution}
+	\qed
+	
+	\subsection{高次多项式猜根与综合除法}
+	对于整系数高次多项式，如果它有有理根，那么这个根一定是“常数项的因数 / 最高次项系数的因数”的形式（有理根定理）.这为我们“猜根”提供了方向.
+	\begin{definition}[综合除法]
+		当猜出一个根 $x=a$ 后，说明多项式必有因式 $(x-a)$.综合除法是快速计算多项式除以 $(x-a)$ 的商式的竖式算法.
+	\end{definition}
+	\begin{exercise}
+		分解因式：$x^3 - 2x^2 - 5x + 6$.
+	\end{exercise}
+	\begin{solution}
+		常数项为6，其因数有 $\pm 1, \pm 2, \pm 3, \pm 6$.最高次项系数为1.
+		尝试将 $x=1$ 代入：$1-2-5+6=0$.成功！所以必有因式 $(x-1)$.
+		用 $(x-1)$ 去除原多项式：
+		\begin{center}
+			\begin{tabular}{c|cccc}
+				1 & 1 & -2 & -5 & 6 \\
+				&   & 1  & -1 & -6 \\
+				\hline
+				& 1 & -1 & -6 & \textbf{0} \\
+			\end{tabular}
+		\end{center}
+		商式为 $x^2-x-6$.所以 $x^3 - 2x^2 - 5x + 6 = (x-1)(x^2-x-6)$.
+		对 $x^2-x-6$ 使用十字相乘法，得 $(x-3)(x+2)$.
+		所以，最终分解结果为 $(x-1)(x-3)(x+2)$.
+	\end{solution}
+	\qed
+	
+	\section{一元二次方程根的分布}
+	
+	这是一个综合性极强的问题，深刻体现了数形结合思想.它探讨的是一元二次方程 $ax^2+bx+c=0 \ (a>0)$ 的两个实数根 $x_1, x_2$ 相对于某个给定值 $k$ 的位置关系.
+	
+	\begin{note}[核心思想：几何问题代数化]
+		解决此类问题的根本，在于将“根的分布”这一\textbf{几何位置描述}，通过二次函数 $y=ax^2+bx+c$ 的图像特征，转化为关于系数的\textbf{代数不等式组}.我们必须学会用代数语言去描述几何形态.
+	\end{note}
+	
+	\begin{theorem}[古希腊掌管根分布的神]
+		要精确地“定位”抛物线的根，我们通常需要从三个方面进行约束：
+		\begin{enumerate}
+			\item \textbf{判别式 $\Delta=b^2-4ac$}：它掌管着“\textbf{有没有根}”.$\Delta \ge 0$ 是方程有实根的前提，是所有讨论的基石.
+			\item \textbf{对称轴 $x = -\frac{b}{2a}$}：它掌管着“\textbf{根的整体位置}”.对称轴在 $k$ 的左边还是右边，决定了两个根是“整体靠左”还是“整体靠右”.
+			\item \textbf{端点函数值 $f(k)$}：它掌管着“\textbf{根与特定点的相对位置}”.$f(k)$ 的符号决定了点 $k$ 是在两根之间 ($f(k)<0$)，还是在两根之外 ($f(k)>0$).
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[scale=1.2]
+			\draw[->] (-3,0) -- (5,0) node[below] {$x$};
+			\draw[->] (0,-2) -- (0,4) node[left] {$y$};
+			% 抛物线
+			\draw[blue, thick, smooth, domain=-0.5:4.5] plot (\x, {(\x-1)*(\x-4)});
+			\node[blue, right] at (4.5, 2.25) {$y=f(x)$};
+			% 根
+			\fill (1,0) circle (1.5pt) node[below] {$x_1$};
+			\fill (4,0) circle (1.5pt) node[below] {$x_2$};
+			% 对称轴
+			\draw[red, dashed] (2.5, -1.25) -- (2.5, 4) node[above, black, align=center] {对称轴 \\ $x=-\frac{b}{2a}$};
+			% 端点值k1
+			\draw[green!50!black, dashed] (0,0) -- (0,4);
+			\node[below, green!50!black] at (0,0) {$k_1=0$};
+			\node[left, green!50!black] at (0,4) {$f(k_1)>0$};
+			% 端点值k2
+			\draw[purple, dashed] (5,-1.5) -- (5,4);
+			\node[below, purple] at (5,0) {$k_2$};
+			\node[right, purple] at (5,-1.5) {$f(k_2)<0$};
+		\end{tikzpicture}
+	\end{figure}
+	
+	\begin{property}[常见根分布的等价条件 ($a>0$)]
+		设方程 $ax^2+bx+c=0$ 的两根为 $x_1, x_2$.
+		\begin{enumerate}
+			\item \textbf{两根均大于 $k$} (两根同在k右侧):
+			\begin{itemize}
+				\item 逻辑分析：首先，得有根($\Delta \ge 0$).其次，两根整体在k右侧，意味着对称轴在k右侧.最后，为了防止一根在k左一根在k右，必须保证k点在两根之外，即$f(k)>0$.
+				\item 条件组: $\begin{cases} \Delta \ge 0 \\ -\frac{b}{2a} > k \\ f(k) > 0 \end{cases}$
+			\end{itemize}
+			
+			\item \textbf{一根大于 $k$，一根小于 $k$} (k在两根之间):
+			\begin{itemize}
+				\item 逻辑分析：只要保证k点在两根之间，抛物线开口向上，那么图像在k处的函数值必然小于0.而$f(k)<0$ 这一个条件，已经蕴含了图像必定与x轴有两个不同的交点（即$\Delta>0$）.所以此条件最为简洁.
+				\item 条件组: $f(k) < 0$
+			\end{itemize}
+			
+			\item \textbf{两根均在区间 $(k_1, k_2)$ 内}:
+			\begin{itemize}
+				\item 逻辑分析：这是最全面的情况.首先要有根($\Delta \ge 0$).其次，根的整体位置要在区间内，即对称轴在 $(k_1,k_2)$ 之间.最后，要保证两根不跑到区间外面去，必须让区间的两个端点都在根之外，即 $f(k_1)>0$ 且 $f(k_2)>0$.
+				\item 条件组: $\begin{cases} \Delta \ge 0 \\ k_1 < -\frac{b}{2a} < k_2 \\ f(k_1) > 0 \\ f(k_2) > 0 \end{cases}$
+			\end{itemize}
+		\end{enumerate}
+	\end{property}
+	
+	\begin{exercise}
+		若关于 $x$ 的方程 $x^2 - (m+1)x + m = 0$ 的两根均在区间 $(0, 2)$ 内，求实数 $m$ 的取值范围.
+	\end{exercise}
+	\begin{solution}
+		设 $f(x) = x^2 - (m+1)x + m$.根据“两根均在区间 $(k_1, k_2)$ 内”的模型，令 $k_1=0, k_2=2$.
+		我们需要同时满足以下四个条件：
+		\begin{enumerate}
+			\item \textbf{判别式}: $\Delta = [-(m+1)]^2 - 4m = m^2+2m+1-4m = (m-1)^2 \ge 0$.此条件对任意实数 $m$ 恒成立.
+			\item \textbf{对称轴}: 对称轴为 $x = -\frac{-(m+1)}{2} = \frac{m+1}{2}$.
+			要求 $0 < \frac{m+1}{2} < 2 \implies 0 < m+1 < 4 \implies -1 < m < 3$.
+			\item \textbf{左端点值}: $f(0) = 0^2 - (m+1)\cdot 0 + m = m > 0$.
+			\item \textbf{右端点值}: $f(2) = 2^2 - (m+1)\cdot 2 + m = 4 - 2m - 2 + m = 2-m > 0 \implies m < 2$.
+		\end{enumerate}
+		现在，我们将所有关于 $m$ 的条件取交集：
+		$\begin{cases} m \in \mathbb{R} \\ -1 < m < 3 \\ m > 0 \\ m < 2 \end{cases}$
+		在数轴上画出这些区间，易得它们的公共部分为 $(0, 2)$.
+		因此，实数 $m$ 的取值范围是 $(0, 2)$.
+	\end{solution}
+	\qed
+	
+	\section{核心计算与变形技巧}
+	
+	\begin{definition}[配方法]
+		配方法是代数恒等变形的核心，旨在创造出完全平方式，从而揭示二次函数的顶点、对称轴等几何性质，或是在解题中降次、简化.
+		\textbf{核心步骤}：“提首（二次项系数）、折半（一次项系数）、再平方、加减平衡”.
+		\begin{exercise}
+			求函数 $y=2x^2-8x+5$ 的最小值.
+		\end{exercise}
+		\begin{solution}
+			\begin{align*}
+				y &= 2(x^2-4x) + 5 & \text{ (提首)} \\
+				&= 2(x^2 - 4x + (-2)^2 - (-2)^2) + 5 & \text{ (折半-4得-2, 再平方)} \\
+				&= 2[(x-2)^2 - 4] + 5 & \text{ (配成完全平方)} \\
+				&= 2(x-2)^2 - 8 + 5 & \text{ (加减平衡)} \\
+				&= 2(x-2)^2 - 3
+			\end{align*}
+			因为 $(x-2)^2 \ge 0$，所以 $y \ge -3$.当 $x=2$ 时，函数取得最小值-3.
+		\end{solution}
+		\qed
+	\end{definition}
+	
+	\begin{definition}[换元法]
+		当一个代数式结构复杂，但其中有某些部分重复出现时，可以用一个新变量（元）替代这个部分，从而简化问题，使其转化为我们熟悉的基本模型（如一元二次方程）.
+		\begin{note}[换元法的灵魂：换元必换范围]
+			这是换元法的灵魂，也是最常见的陷阱.引入新变量后，必须立刻根据旧变量的范围，确定新变量的取值范围，否则极易产生增根.
+		\end{note}
+		\begin{exercise}
+			解方程 $4^x - 3 \cdot 2^x + 2 = 0$.
+		\end{exercise}
+		\begin{solution}
+			原方程可写为 $(2^x)^2 - 3 \cdot 2^x + 2 = 0$.
+			令 $t=2^x$.因为指数函数 $y=2^x$ 的值域为 $(0, +\infty)$，所以我们必须附加条件 $t>0$.
+			原方程化为关于 $t$ 的一元二次方程：$t^2 - 3t + 2 = 0$.
+			解得 $(t-1)(t-2)=0$，即 $t=1$ 或 $t=2$.
+			检验范围：$t=1$ 和 $t=2$ 均满足 $t>0$ 的条件，所以都有效.
+			\begin{itemize}
+				\item 当 $t=1$ 时，$2^x=1 \implies x=0$.
+				\item 当 $t=2$ 时，$2^x=2 \implies x=1$.
+			\end{itemize}
+			所以原方程的解为 $x=0$ 或 $x=1$.
+		\end{solution}
+		\qed
+	\end{definition}
+	
+	\begin{definition}[待定系数法]
+		当已知一个函数或多项式的类型（如一次函数、二次函数、反比例函数），但其系数未知时，可以先设出其含有未知系数的标准形式，然后根据已知条件（如经过某些点、对称轴信息等）列出关于待定系数的方程组，解出系数即可.这是求函数解析式的最基本、最普适的方法.
+	\end{definition}

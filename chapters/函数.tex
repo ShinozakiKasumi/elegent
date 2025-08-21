@@ -1,0 +1,1673 @@
+\makechapteropener
+{四} 
+{函数} 
+{音乐是心灵在无意识中进行的数学运算。}
+{戈特弗里德·威廉·莱布尼茨 (Gottfried Wilhelm Leibniz)} 
+
+\chapter{函数}
+
+\lettrine{函}{数}，是整个高中数学乃至现代数学的“脊梁”.它不仅是一个独立的核心章节，更是我们理解和描述现实世界变化规律、连接代数与几何的通用语言.
+
+许多同学对函数感到畏惧，因为它抽象、多变，性质繁多.但请相信，一旦你真正理解拿捏了函数的本质——一种的“对应关系”，并掌握了其核心性质——单调性、奇偶性、周期性，你将能够看透许多复杂函数问题背后的简单结构.本章，我们将从源头出发，重新认识这位既熟悉又陌生的“老朋友”.
+
+\begin{introduction}[知识概括]
+	\item \textbf{函数的本质:} 深刻理解函数的三要素（定义域、值域、对应法则），明确“定义域优先”的原则，并掌握常见函数定义域的求法.
+	\item \textbf{函数的核心性质:} 这是本章的灵魂.系统掌握函数的\textbf{单调性}（判断与证明）、\textbf{奇偶性}（判断与应用）、\textbf{周期性}（常见函数的周期）以及\textbf{零点}的存在性与求解.
+	\item \textbf{基本初等函数:} 熟练掌握五类基本初等函数——\textbf{一次/二次函数}、\textbf{幂函数}、\textbf{指数函数}、\textbf{对数函数}、\textbf{三角函数}的图像与性质，它们是我们解决复杂问题的“积木块”.
+	\item \textbf{函数的图像与应用:} 掌握函数图像的\textbf{平移、伸缩、对称}等变换技巧，学会“由图观性，由性画图”，并能利用函数模型解决简单的实际应用问题.
+\end{introduction}
+
+\section{函数的概念}
+
+函数是描述变量之间依赖关系的核心数学模型.准确理解函数的定义，是学习本章所有后续内容的基础.
+
+\subsection{函数的定义}
+
+\begin{definition}[函数]
+	设 $\mathbb{A}, \mathbb{B}$ 是两个\textbf{非空}的数集，如果按照某种确定的对应关系 $f$，使对于集合 $\mathbb{A}$ 中的\textbf{任意一个}数 $x$，在集合 $\mathbb{B}$ 中都有\textbf{唯一确定}的数 $y$ 和它对应，那么就称 $f: \mathbb{A} \to \mathbb{B}$ 为从集合 $\mathbb{A}$到集合 $\mathbb{B}$ 的一个\textbf{函数}.
+	记作：
+	\begin{equation}
+		y = f(x), \quad x \in \mathbb{A}
+	\end{equation}
+\end{definition}
+
+\begin{note}[对定义的解读]
+	在这个严谨的定义，其中有三个关键词需要我们深刻理解：
+	\begin{itemize}
+		\item \textbf{“任意一个”}: 这强调了定义域 $\mathbb{A}$ 中的所有元素都必须有对应的输出.不允许有任何一个 $x$ 在对应法则 $f$ 下“无事可做”.
+		\item \textbf{“唯一确定”}: 这是函数最核心的特征.一个输入 $x$ 只能对应一个输出 $y$.在坐标系中，这意味着任何一条垂直于x轴的直线，与函数图像最多只能有一个交点.
+		\item \textbf{“都”}: 指明了输出 $y$ 的归属，它必须是集合 $\mathbb{B}$ 中的元素.
+	\end{itemize}
+	为了帮助理解，我们可以将函数比作一台精密的“加工机器”，其中集合 $\mathbb{A}$ 是“原料箱”，对应法则 $f$ 是“加工方案”，集合 $\mathbb{B}$ 是“成品仓库”.“任意一个”意味着所有原料都得加工；“唯一确定”意味着一个原料只能产出一种规格的成品.
+\end{note}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale=1, every node/.style={font=\small}]
+		\begin{scope}
+			\node[draw, shape=rectangle, minimum width=2.5cm, minimum height=3.5cm] (A) at (0,0) {};
+			\node[above=2pt] at (A.north) {集合 $\mathbb{A}$};
+			\node[draw, shape=rectangle, minimum width=2.5cm, minimum height=3.5cm] (B) at (4,0) {};
+			\node[above=2pt] at (B.north) {集合 $\mathbb{B}$};
+			
+			\fill (A.center)++(-0.3, 1) circle (1.5pt) node[left] {$x_1$};
+			\fill (A.center)++(-0.3, 0) circle (1.5pt) node[left] {$x_2$};
+			\fill (A.center)++(-0.3, -1) circle (1.5pt) node[left] {$x_3$};
+			
+			\fill (B.center)++(0.3, 0.7) circle (1.5pt) node[right] {$y_1$};
+			\fill (B.center)++(0.3, -0.7) circle (1.5pt) node[right] {$y_2$};
+			
+			\draw[->, thick, blue] (-0.3, 1) -- node[above, sloped]{$f$} (3.7, 0.7);
+			\draw[->, thick, blue] (-0.3, 0) -- node[above, sloped]{$f$} (3.7, 0.7);
+			\draw[->, thick, blue] (-0.3, -1) -- node[above, sloped]{$f$} (3.7, -0.7);
+			
+			\node[below=12pt, green!50!black, text width=3cm, align=center] at (A.south) {\textbf{合法的函数}\\[2pt] 允许“一对一”或“多对一”};
+		\end{scope}
+		
+		\begin{scope}[xshift=8cm]
+			\node[draw, shape=rectangle, minimum width=2.5cm, minimum height=3.5cm] (C) at (0,0) {};
+			\node[above=2pt] at (C.north) {集合 $\mathbb{A}$};
+			\node[draw, shape=rectangle, minimum width=2.5cm, minimum height=3.5cm] (D) at (4,0) {};
+			\node[above=2pt] at (D.north) {集合 $\mathbb{B}$};
+			
+			\fill (C.center)++(-0.3, 0) circle (1.5pt) node[left] {$x_0$};
+			\fill (D.center)++(0.3, 1) circle (1.5pt) node[right] {$y_a$};
+			\fill (D.center)++(0.3, -1) circle (1.5pt) node[right] {$y_b$};
+			
+			\draw[->, thick, red] (-0.3, 0) -- node[above, sloped, near end]{$f$} (3.7, 1);
+			\draw[->, thick, red] (-0.3, 0) -- node[below, sloped, near end]{$f$} (3.7, -1);
+			
+			\node[below=12pt, red, text width=3cm, align=center] at (C.south) {\textbf{非函数}\\[2pt] 违反了“唯一确定”原则 (一对多)};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{函数的对应关系模型}
+\end{figure}
+
+\subsubsection*{函数的三要素}
+一个函数由\textbf{定义域、对应法则、值域}三个基本要素构成，它们共同确定了一个函数.
+\begin{description}
+	\item[定义域 ] 自变量 $x$ 的取值范围，即集合 $\mathbb{A}$.它是函数存在的根基，在研究任何函数问题（如性质、图像、最值）之前，必须首先确定其定义域.这是函数研究的“\textbf{第一原则}”.
+	\item[对应法则] 即关系 $f$.它明确了从输入 $x$ 到输出 $y$ 的转换规则.这个规则可以用解析式、图像、表格等多种形式给出.
+	\item[值域] 因变量 $y$ 的取值范围.它是由定义域和对应法则唯一确定的.具体来说，值域是定义域 $\mathbb{A}$ 中所有元素，在对应法则 $f$ 作用下所得到的输出值组成的集合.值域通常记作 $f(\mathbb{A})$，它是集合 $\mathbb{B}$ 的一个子集，即 $f(\mathbb{A}) \subseteq \mathbb{B}$.
+\end{description}
+
+\subsection{函数定义域的求法}
+
+求函数的定义域，就是要找出所有使函数解析式有意义的自变量 $x$ 的取值集合.这在代数上通常归结为求解一个或多个不等式组成的\textbf{不等式组}.
+
+\begin{note}[常见解析式的限制条件]
+	\begin{itemize}
+		\item \textbf{分母不为零}: 对于形如 $\frac{f(x)}{g(x)}$ 的分式，必须满足 $g(x) \neq 0$.
+		\item \textbf{偶次根式非负}: 对于形如 $\sqrt[2n]{f(x)}$ 的根式，必须满足 $f(x) \ge 0$.
+		\item \textbf{对数真数为正}: 对于形如 $\log_a f(x)$ 的对数，必须满足 $f(x) > 0$.
+		\item \textbf{零次幂底数不为零}: 对于形如 $[f(x)]^0$ 的幂，必须满足 $f(x) \neq 0$.
+		\item \textbf{实际问题约束}: 对于来源于实际问题的函数，其定义域还需符合物理或现实意义（如长度、时间、质量等通常为正数）.
+	\end{itemize}
+\end{note}
+
+\begin{exercise}
+	求函数 $f(x) = \frac{\sqrt{4-x^2}}{\ln(x-1)}$ 的定义域.
+\end{exercise}
+\begin{solution}
+
+	\textcolor{green!50!black}{该函数解析式中包含了偶次根式、分母、对数三种结构，我们需要列出它们各自成立的条件，并求其交集.}
+
+	为了使函数 $f(x)$ 的解析式有意义，自变量 $x$ 必须同时满足以下三个条件：
+	\begin{enumerate}
+		\item 分子中的根式有意义，要求被开方数非负：$4-x^2 \ge 0$.
+		\item 分母中的对数有意义，要求真数大于零：$x-1 > 0$.
+		\item 分母整体不为零：$\ln(x-1) \neq 0$.
+	\end{enumerate}
+	
+	我们将这三个条件联立成不等式组：
+	\begin{equation*}
+		\begin{cases}
+			4-x^2 \ge 0 & \quad (1) \\
+			x-1 > 0 & \quad (2) \\
+			\ln(x-1) \neq 0 & \quad (3)
+		\end{cases}
+	\end{equation*}
+	
+	\begin{itemize}
+		\item 解不等式(1): $x^2 \le 4 \implies -2 \le x \le 2$.
+		\item 解不等式(2): $x > 1$.
+		\item 解不等式(3): 由 $\ln 1 = 0$ 可知，需 $x-1 \neq 1$，即 $x \neq 2$.
+	\end{itemize}
+	
+	现在，我们将三个解集取\textbf{交集}.在数轴上画图分析可得，最终的取值范围是 $(1, 2)$.
+	该函数的定义域为 $\textcolor{red}{(1, 2)}$.
+\end{solution}
+\qed
+
+\subsection{函数相等的判断}
+
+判断两个函数是否为同一函数，是辨析函数概念的经典问题.其标准非常严格.
+
+\begin{definition}[函数相等]
+	如果两个函数 $f(x)$ 和 $g(x)$ 的\textbf{定义域相同}，且\textbf{对应法则也完全相同}，那么就称这两个函数是相等的，记为 $f(x)=g(x)$.
+\end{definition}
+
+\begin{note}[两步审查法]
+	根据定义，判断两个函数是否相等，必须同时审查两个方面：
+	\begin{enumerate}
+		\item \textbf{审查定义域}：它们的定义域是否完全一致？这是第一道关卡，若不同，则必不是同一函数.
+		\item \textbf{审查对应法则}：在它们共同的定义域内，对于任意一个相同的输入 $x$，它们的输出 $f(x)$ 和 $g(x)$ 是否永远相等？这通常需要我们将解析式\textbf{化简后}进行比较.
+	\end{enumerate}
+\end{note}
+
+\begin{exercise}
+	判断下列各组函数是否为同一个函数，并说明理由.
+	\begin{enumerate}
+		\item $f(x) = \sqrt{x^2}$ 与 $g(x) = x$
+		\item $f(x) = 1$ 与 $g(x) = (x-1)^0$
+		\item $f(x) = x+2$ 与 $g(x) = \frac{x^2-4}{x-2}$
+	\end{enumerate}
+\end{exercise}
+\begin{solution}
+	\begin{enumerate}
+		\item \textbf{不同}.
+		\textcolor{green!50!black}{理由：} 两个函数的定义域均为 $\mathbb{R}$，审查通过.但它们的\textbf{对应法则不同}.
+		$f(x) = \sqrt{x^2} = |x|$，其法则是“取绝对值”.而 $g(x)=x$ 的法则是“返回自身”.例如，当 $x=-3$ 时，$f(-3)=3$，而 $g(-3)=-3$，$f(x) \neq g(x)$.
+		
+		\item \textbf{不同}.
+		\textcolor{green!50!black}{理由：} 它们的\textbf{定义域不同}.
+		$f(x)=1$ 的定义域为 $\mathbb{R}$.
+		$g(x)=(x-1)^0$ 的定义域要求底数不为零，即 $x \neq 1$.
+		由于定义域不同，它们不是同一个函数.
+		
+		\item \textbf{不同}.
+		\textcolor{green!50!black}{理由：} 它们的\textbf{定义域不同}.
+		$f(x)=x+2$ 的定义域为 $\mathbb{R}$.
+		$g(x)=\frac{x^2-4}{x-2}$ 的定义域要求分母不为零，即 $x \neq 2$.
+		尽管 $g(x)$ 可以化简为 $x+2$，但其定义域中不包含点 $x=2$，与 $f(x)$ 不同.
+	\end{enumerate}
+\end{solution}
+\qed
+
+\section{函数的反函数}
+
+
+在上一节，我们将函数理解为一台“加工机器”，它接收原料 $x$，产出成品 $y$.一个自然的问题是：我们能否设计一台“逆向机器”，将成品 $y$ 准确无误地还原为\textbf{最初那一个}原料 $x$ 呢？这种实现“逆过程”的函数，就是我们本节要探讨的主角——\textbf{反函数}.它不仅是一种重要的函数类型，其背后蕴含的\textbf{坐标互换}与\textbf{图像对称}的思想，是解决许多复杂问题的金钥匙.
+
+
+\subsection{反函数存在的条件}
+
+并非所有的函数都能拥有反函数.一个函数的“逆过程”要想本身也成为一个函数，就必须满足一个苛刻的条件：对应关系必须是“一对一”的.
+
+让我们思考一个反例：函数 $y=x^2$.如果我告诉你，它的输出结果 $y=4$，你能确定当初的输入 $x$ 是什么吗？它可能是 $2$，也可能是 $-2$.这个“逆过程”出现了“一对多”的混乱，因此它不是一个函数.
+
+\begin{theorem}[反函数存在的充要条件]
+	一个函数 $f(x)$ 存在反函数的充分必要条件是：该函数的对应关系是\textbf{一一对应}的.
+	
+	用更严谨的数学语言描述，即：对于其定义域内任意两个不同的自变量 $x_1, x_2$（$x_1 \neq x_2$），它们所对应的函数值也必然不同（$f(x_1) \neq f(x_2)$）.
+\end{theorem}
+
+\begin{note}[水平线检验法]
+	从几何上看，这个条件有一个非常直观的检验方法——\textbf{水平线检验法}.
+	\begin{itemize}
+		\item 如果\textbf{任何一条}水平直线与函数图像\textbf{最多只有一个交点}，那么该函数就存在反函数.
+		\item 如果存在\textbf{至少一条}水平直线与函数图像有\textbf{多于一个交点}，那么该函数就\textbf{不存在}反函数.
+	\end{itemize}
+\end{note}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale=0.9, every node/.style={font=\small}]
+		\begin{scope}
+			\node[below] at (0, -2.5) {图 (a): 满足水平线检验};
+			\draw[->] (-2.5,0) -- (2.5,0) node[below] {$x$};
+			\draw[->] (0,-2) -- (0,2.5) node[left] {$y$};
+			\draw[blue, thick, smooth] plot[domain=-2:2] (\x, {0.5*\x^3 + 0.5*\x});
+			\draw[red, dashed] (-2.5, 1.5) -- (2.5, 1.5);
+			\node at (-1.5, 1.5) [circle, fill, inner sep=1.5pt]{};
+			\node[above, green!50!black] at (0,2) {\checkmark 最多一个交点};
+		\end{scope}
+		
+		\begin{scope}[xshift=6cm]
+			\node[below] at (0, -2.5) {图 (b): 违反水平线检验};
+			\draw[->] (-2.5,0) -- (2.5,0) node[below] {$x$};
+			\draw[->] (0,-0.5) -- (0,2.5) node[left] {$y$};
+			\draw[blue, thick, smooth] plot[domain=-1.5:1.5] (\x, {\x^2});
+			\draw[red, dashed] (-2.5, 1.5) -- (2.5, 1.5);
+			\node at (-1.225, 1.5) [circle, fill, inner sep=1.5pt]{};
+			\node at (1.225, 1.5) [circle, fill, inner sep=1.5pt]{};
+			\node[above, red] at (0,2) {\sffamily X 有两个交点};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{利用水平线检验法判断反函数是否存在}
+\end{figure}
+
+\subsection{反函数的定义与求法}
+
+\begin{definition}[反函数]
+	设函数 $y=f(x)$ 的定义域为 $\mathbb{A}$，值域为 $\mathbb{C}$，且 $f(x)$ 满足一一对应关系.我们根据 $y=f(x)$，可以反解出唯一的 $x$ 来表示 $y$，得到 $x=g(y)$.那么，函数 $x=g(y)$ 就被称为函数 $y=f(x)$ 的\textbf{反函数}.
+	
+	习惯上，我们用 $x$ 表示自变量， $y$ 表示因变量，所以我们将 $x=g(y)$ 中的 $x, y$ 互换，写成：
+	\begin{equation}
+		y = g(x)
+	\end{equation}
+	并记作 $y = f^{-1}(x)$.这里的“$-1$”是反函数的标志，\textbf{绝不是“-1”次方}！即 $f^{-1}(x) \neq \frac{1}{f(x)}$.
+\end{definition}
+
+\subsubsection*{求解反函数的三步法}
+求解反函数的步骤清晰，可以概括为“\textbf{反解-互换-注明}”.
+\begin{note}
+	对于函数 $y=f(x)$：
+	\begin{enumerate}
+		\item \textbf{反解 $x$}：从 $y=f(x)$ 出发，用含 $y$ 的代数式来表示 $x$，得到 $x=f^{-1}(y)$.
+		\item \textbf{互换 $x, y$}：将 $x=f^{-1}(y)$ 中的变量 $x, y$ 互换位置，得到 $y=f^{-1}(x)$.
+		\item \textbf{注明定义域}：在写出的反函数解析式后面，必须注明其定义域.反函数的定义域，就是\textbf{原函数的值域}.这是最关键也最容易被忽略的一步！
+	\end{enumerate}
+\end{note}
+
+\begin{exercise}
+	求函数 $f(x) = \frac{2x-1}{x+3}$ 的反函数.
+\end{exercise}
+\begin{solution}
+	\textcolor{green!50!black}{我们严格按照“三步法”进行操作.首先，求出原函数的值域，这将是反函数的定义域.}
+	
+	\textbf{第一步：求原函数的值域.}
+	设 $y = \frac{2x-1}{x+3}$.反解 $x$ 可得 $x = \frac{-3y-1}{y-2}$.
+	要使 $x$ 有解，必须 $y-2 \neq 0$，即 $y \neq 2$.
+	所以，原函数 $f(x)$ 的值域为 $(-\infty, 2) \cup (2, +\infty)$.
+	
+	\textbf{第二步：求解反函数.}
+	\begin{enumerate}
+		\item \textbf{反解 $x$}: 从上一步已知 $x = \frac{-3y-1}{y-2}$.
+		\item \textbf{互换 $x, y$}: 得到 $y = \frac{-3x-1}{x-2}$.
+		\item \textbf{注明定义域}: 反函数的定义域就是原函数的值域，即 $x \neq 2$.
+	\end{enumerate}
+	
+	函数 $f(x)$ 的反函数为 $f^{-1}(x) = \frac{-3x-1}{x-2}$，其定义域为 $(-\infty, 2) \cup (2, \infty)$.
+\end{solution}
+\qed
+
+\subsection{反函数的性质}
+互为反函数的两个函数，其性质和图像之间存在着深刻而优美的联系.
+
+\begin{enumerate}
+	\item \textbf{【性质一】图像的对称性 (核心性质)}
+	函数 $y=f(x)$ 的图像与其反函数 $y=f^{-1}(x)$ 的图像，关于直线 $\textcolor{red}{y=x}$ 完全对称.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[scale=1, every node/.style={font=\small}]
+			\draw[->] (-3,-1) -- (4,0) node[below] {$x$};
+			\draw[->] (-1,-3) -- (0,4) node[left] {$y$};
+			
+			\draw[red, dashed] (-3,-3) -- (3.5,3.5) node[above right] {$y=x$};
+			
+			\draw[blue, thick, smooth, domain=-1:2] plot (\x, {exp(\x)-2}) node[right] {$y=f(x)$};
+			\draw[purple, thick, smooth, domain=-1.63:5.39] plot (\x, {ln(\x+2)}) node[above] {$y=f^{-1}(x)$};
+			
+			\node[fill=blue, circle, inner sep=1.5pt] (P1) at (1, {exp(1)-2}) {};
+			\node[above left, blue] at (P1) {$(a,b)$};
+			\node[fill=purple, circle, inner sep=1.5pt] (P2) at ({exp(1)-2}, 1) {};
+			\node[below right, purple] at (P2) {$(b,a)$};
+			\draw[gray, dotted] (P1) -- (P2);
+		\end{tikzpicture}
+		\caption{函数与反函数图像关于直线 $y=x$ 对称}
+	\end{figure}
+	
+	\item \textbf{【性质二】定义域与值域的互换}
+	若函数 $y=f(x)$ 的定义域是 $\mathbb{A}$，值域是 $\mathbb{C}$，则其反函数 $y=f^{-1}(x)$ 的定义域是 $\mathbb{C}$，值域是 $\mathbb{A}$.
+	
+	\item \textbf{【性质三】单调性的一致性}
+	如果函数 $y=f(x)$ 在某个区间上是\textbf{增函数}（或减函数），那么它的反函数 $y=f^{-1}(x)$ 在对应的区间上也是\textbf{增函数}（或减函数）.简记为：“\textbf{同增同减}”.
+	
+	\item \textbf{【性质四】运算的抵消性}
+	对于反函数定义域中的任意 $x$，有 $f(f^{-1}(x)) = x$.
+	对于原函数定义域中的任意 $x$，有 $f^{-1}(f(x)) = x$.
+\end{enumerate}
+
+\begin{exercise}[利用对称性求解方程根的关系]
+	已知 $x_1$ 是方程 $x \cdot 3^x = 4$ 的根， $x_2$ 是方程 $x \cdot \log_3 x = 4$ 的根，则 $x_1 x_2 =$
+	
+	\vspace{0.5em}
+	\noindent 
+	\begin{tabularx}{\linewidth}{*{4}{X}}
+		\textbf{(A)} 16 & \textbf{(B)} 8 & \textbf(C) 6 & \textbf(D) 4
+	\end{tabularx}
+	
+\end{exercise}
+\begin{solution}
+	\textbf{【思路分析】}
+	\textcolor{green!50!black}{这两个方程都属于超越方程，直接求解 $x_1, x_2$ 是极其困难的.这强烈暗示我们，题目考察的不是计算，而是对方程结构和函数性质的洞察.正确的思路是\textbf{将方程转化为函数图像的交点问题}，然后利用函数图像的\textbf{对称性}来寻找 $x_1$ 和 $x_2$ 之间的关系.}
+	
+	\textbf{【解题步骤】}
+	\begin{enumerate}
+		\item \textbf{转化方程为函数交点}:
+		我们将两个方程进行变形，分离出常见的函数形式.
+		\begin{itemize}
+			\item 方程一：$x \cdot 3^x = 4 \implies \textcolor{blue}{3^x = \frac{4}{x}}$.
+			这可以看作是函数 $y=3^x$ 与函数 $y=\frac{4}{x}$ 图像交点的横坐标为 $x_1$.
+			\item 方程二：$x \cdot \log_3 x = 4 \implies \textcolor{blue}{\log_3 x = \frac{4}{x}}$.
+			这可以看作是函数 $y=\log_3 x$ 与函数 $y=\frac{4}{x}$ 图像交点的横坐标为 $x_2$.
+		\end{itemize}
+		
+		\item \textbf{【核心步骤】发现图像的对称关系}:
+		我们来分析这三组函数的图像特征：
+		\begin{itemize}
+			\item \textbf{函数对一}: $f(x)=3^x$ 与 $g(x)=\log_3 x$ 是互为\textbf{反函数}的一对，它们的图像关于直线 $\textcolor{red}{y=x}$ 对称.
+			\item \textbf{函数二}: $h(x)=\frac{4}{x}$ 的图像自身也具有特殊的对称性.我们来验证它是否关于 $y=x$ 对称.
+			在函数 $y=\frac{4}{x}$ 图像上任取一点 $(a,b)$，则有 $b = \frac{4}{a}$，变形得 $a = \frac{4}{b}$.这意味着点 $(b,a)$ 也满足函数 $y=\frac{4}{x}$ 的关系式，即点 $(b,a)$ 也在其图像上.因此，函数 $y=\frac{4}{x}$ 的图像是关于直线 $\textcolor{red}{y=x}$ 对称的.
+		\end{itemize}
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}[scale=1.2, every node/.style={font=\small}]
+				\draw[->] (-1,0) -- (4.5,0) node[below] {$x$};
+				\draw[->] (0,-1) -- (0,4.5) node[left] {$y$};
+				
+				\draw[red, dashed] (-0.5,-0.5) -- (4,4) node[above right] {$y=x$};
+
+				\draw[blue, thick, smooth, domain=-0.8:1.5] plot (\x, {3^\x}) node[above] {$y=3^x$};
+				\draw[purple, thick, smooth, domain=0.2:4] plot (\x, {ln(\x)/ln(3)}) node[right] {$y=\log_3 x$};
+				\draw[green!50!black, thick, smooth, domain=0.5:4] plot (\x, {4/\x}) node[below right] {$y=\frac{4}{x}$};
+				
+	
+				\node[fill=black, circle, inner sep=1.5pt] (P1) at (1.247, 3.208) {};
+				\node[above left] at (P1) {$P(x_1, y_1)$};
+				
+				\node[fill=black, circle, inner sep=1.5pt] (P2) at (3.208, 1.247) {};
+				\node[below right] at (P2) {$Q(x_2, y_2)$};
+				
+				\draw[gray, dotted] (P1) -- (P2);
+			\end{tikzpicture}
+			\caption{利用函数图像的对称性分析交点关系（交点没绘准，能看就行）}
+		\end{figure}
+		
+		\item \textbf{利用对称性得出结论}:
+		设点 $P(x_1, y_1)$ 是 $y=3^x$ 与 $y=\frac{4}{x}$ 的交点.
+		设点 $Q(x_2, y_2)$ 是 $y=\log_3 x$ 与 $y=\frac{4}{x}$ 的交点.
+		
+		因为 $y=3^x$ 与 $y=\log_3 x$ 关于 $y=x$ 对称，且 $y=\frac{4}{x}$ 自身也关于 $y=x$ 对称，所以它们的交点 $P$ 和 $Q$ 必然也关于直线 $y=x$ 对称.
+		
+		因此，点 $Q$ 的坐标就是点 $P$ 的坐标交换 $x,y$ 得到的结果，即 $(x_2, y_2) = (y_1, x_1)$.
+		所以我们有 $\textcolor{blue}{x_2 = y_1}$.
+		
+		而根据点 $P(x_1, y_1)$ 的定义，它在函数 $y=\frac{4}{x}$ 的图像上，所以 $y_1 = \frac{4}{x_1}$.
+		
+		将两者结合，得到 $x_2 = \frac{4}{x_1}$.
+		故 $x_1 x_2 = 4$.
+	\end{enumerate}
+	
+	\textbf{【最终答案】} D. 4.
+\end{solution}
+\qed
+
+\subsubsection*{反函数思想的应用与辨析}
+
+我们在上一个例题中看到，一个看似无法代数求解的问题，通过发现函数图像的对称性迎刃而解.这是一种非常重要的数学思想：当直接计算的道路被堵死时，要立刻转向寻找问题结构中的\textbf{几何性质}.反函数思想的核心应用，就是利用其图像关于直线 $y=x$ 对称的特性.
+
+那么，在解题时，我们应该如何培养这种“嗅觉”，识别出可以使用反函数思想的信号呢？
+
+\begin{note}[何时要想到反函数]
+	当你看到题目中出现以下特征的组合时，就应该立刻对“反函数对称性”保持高度警觉：
+	\begin{enumerate}
+		\item \textbf{出现互为反函数的“函数对”}: 这是最强烈的信号.最经典的就是指数函数与对数函数，如 $a^x$ 与 $\log_a x$；幂函数中的 $y=x^n$ 与 $y=\sqrt[n]{x}$ (在特定定义域内).
+		\item \textbf{出现两个结构相似的方程}: 通常形式为 $f(x)=g(x)$ 和 $f^{-1}(x)=g(x)$.
+		\item \textbf{【关键识别点】中间函数 $g(x)$ 自身关于 $y=x$ 对称}: 这是解题的“钥匙”.如果 $g(x)$ 不具备这个性质，那么对称性就被破坏，反函数思想往往也无用武之地.
+		\item \textbf{问题无法直接代数求解}: 题目看起来像是“算不出来”的，这往往是命题者在引导你从性质和图像角度思考.
+	\end{enumerate}
+	\textbf{核心思想总结：} 如果函数 $f(x)$ 与 $f^{-1}(x)$ 都与一个\textbf{自身关于 $y=x$ 对称的函数 $g(x)$} 分别相交，那么这两个交点必然也关于 $y=x$ 对称.设交点为 $(x_1, y_1)$ 和 $(x_2, y_2)$，则必有 $(x_2, y_2)=(y_1, x_1)$，从而建立起 $x_1, x_2$ 的关系：$x_2 = y_1 = g(x_1)$.
+\end{note}
+
+
+\section{函数的单调性}
+
+如果说函数的三要素为我们描绘了函数的骨架，那么单调性则揭示了函数动态变化的趋势.它是函数最重要的性质之一，直观地描述了函数图像是“爬坡”还是“下坡”.掌握单调性，意味着我们能从根本上把握函数的走向，从而轻松解决比较大小、求解不等式、确定值域等一系列核心问题.
+
+
+\subsection{单调性的定义与几何意义}
+
+\begin{definition}[单调性]
+	设函数 $y=f(x)$ 的定义域为 $\mathbb{D}$，区间 $\mathbb{I}$ 是 $\mathbb{D}$ 的一个子集 ($\mathbb{I} \subseteq \mathbb{D}$).
+	\begin{itemize}
+		\item \textbf{增函数}: 如果对于区间 $\mathbb{I}$ 内\textbf{任意}两个自变量的值 $x_1, x_2$，当 $x_1 < x_2$ 时，\textbf{恒有} $f(x_1) < f(x_2)$，那么就称函数 $y=f(x)$ 在区间 $\mathbb{I}$ 上是\textbf{增函数}.
+		\item \textbf{减函数}: 如果对于区间 $\mathbb{I}$ 内\textbf{任意}两个自变量的值 $x_1, x_2$，当 $x_1 < x_2$ 时，\textbf{恒有} $f(x_1) > f(x_2)$，那么就称函数 $y=f(x)$ 在区间 $\mathbb{I}$ 上是\textbf{减函数}.
+	\end{itemize}
+	如果函数在整个定义域上是增函数或减函数，我们称之为\textbf{单调函数}.函数单调递增或递减的区间，称为函数的\textbf{单调区间}.
+\end{definition}
+
+\begin{note}[几何意义]
+	单调性的几何意义非常直观：
+	\begin{itemize}
+		\item \textbf{单调递增}: 函数的图像在单调增区间上，从左向右看是持续\textbf{上升}的.
+		\item \textbf{单调递减}: 函数的图像在单调减区间上，从左向右看是持续\textbf{下降}的.
+	\end{itemize}
+\end{note}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale=1, every node/.style={font=\small}]
+		% 增函数
+		\begin{scope}
+			\node[below] at (0, -2.2) {图 (a): 单调递增};
+			\draw[->] (-2,0) -- (2,0) node[below] {$x$};
+			\draw[->] (0,-2) -- (0,2) node[left] {$y$};
+			\draw[blue, thick] plot[smooth] coordinates {(-1.5, -1.5) (-0.5, 0) (1, 1) (1.8, 1.8)};
+
+			\node[fill=red, circle, inner sep=1pt] (x1) at (-1, -1) {}; \node[below left] at (x1) {$f(x_1)$};
+			\node[fill=red, circle, inner sep=1pt] (x2) at (1, 1) {}; \node[above right] at (x2) {$f(x_2)$};
+			\draw[dashed] (x1) |- (x2);
+			\node at (-1, -0.1) {$x_1$}; \node at (1, -0.1) {$x_2$};
+		\end{scope}
+		
+		% 减函数
+		\begin{scope}[xshift=6cm]
+			\node[below] at (0, -2.2) {图 (b): 单调递减};
+			\draw[->] (-2,0) -- (2,0) node[below] {$x$};
+			\draw[->] (0,-2) -- (0,2) node[left] {$y$};
+			\draw[blue, thick] plot[smooth] coordinates {(-1.5, 1.5) (-0.5, 0.5) (1, -1) (1.8, -1.8)};
+			\node[fill=red, circle, inner sep=1pt] (x1) at (-1, 1) {}; \node[above left] at (x1) {$f(x_1)$};
+			\node[fill=red, circle, inner sep=1pt] (x2) at (1, -1) {}; \node[below right] at (x2) {$f(x_2)$};
+			\draw[dashed] (x1) |- (x2);
+			\node at (-1, -0.1) {$x_1$}; \node at (1, -0.1) {$x_2$};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{单调性的几何直观：$x_1 < x_2$}
+\end{figure}
+
+\subsection{单调性的判断方法}
+
+\subsubsection*{法一：定义法（作差比较）}
+定义法是判断单调性最基本、最原始的方法，其核心是通过\textbf{作差}来比较函数值的大小.
+
+\begin{note}[定义法四步流程]
+	\begin{enumerate}
+		\item \textbf{取值}: 在指定区间 $\mathbb{I}$ 内，任取 $x_1, x_2$，并设 $x_1 < x_2$.
+		\item \textbf{作差}: 计算 $f(x_1) - f(x_2)$.
+		\item \textbf{变形}: 对差式进行恒等变形，通常是\textbf{通分、因式分解、配方}等，目标是将其变为若干个易于判断符号的因式的乘积或和的形式.
+		\item \textbf{定号}: 根据 $x_1, x_2$ 所在的区间，判断差式的最终符号.
+		\begin{itemize}
+			\item 若 $f(x_1) - f(x_2) < 0$，则 $f(x_1) < f(x_2)$，函数在此区间单调\textbf{递增}.
+			\item 若 $f(x_1) - f(x_2) > 0$，则 $f(x_1) > f(x_2)$，函数在此区间单调\textbf{递减}.
+		\end{itemize}
+	\end{enumerate}
+\end{note}
+
+\begin{exercise}
+	用定义法证明函数 $f(x)=x+\frac{4}{x}$ 在区间 $(2, +\infty)$ 上是增函数.
+\end{exercise}
+\begin{solution}
+	\textbf{【解题步骤】}
+	\begin{enumerate}
+		\item \textbf{取值}: 任取 $x_1, x_2 \in (2, +\infty)$，且设 $x_1 < x_2$.
+		\item \textbf{作差}:
+		$f(x_1) - f(x_2) = (x_1 + \frac{4}{x_1}) - (x_2 + \frac{4}{x_2}) = (x_1 - x_2) + (\frac{4}{x_1} - \frac{4}{x_2})$
+		\item \textbf{变形}:
+		$= (x_1 - x_2) + \frac{4(x_2 - x_1)}{x_1 x_2} = (x_1 - x_2) - \frac{4(x_1 - x_2)}{x_1 x_2}$
+		\textcolor{blue}{提取公因式 $(x_1-x_2)$}:
+		$= (x_1 - x_2) \left( 1 - \frac{4}{x_1 x_2} \right) = (x_1 - x_2) \frac{x_1 x_2 - 4}{x_1 x_2}$
+		\item \textbf{定号}:
+		因为 $x_1, x_2 \in (2, +\infty)$ 且 $x_1 < x_2$，所以：
+		\begin{itemize}
+			\item $x_1 - x_2 < 0$
+			\item $x_1 > 2, x_2 > 2 \implies x_1 x_2 > 4 \implies x_1 x_2 - 4 > 0$
+			\item $x_1 x_2 > 0$
+		\end{itemize}
+		因此，差式 $f(x_1)-f(x_2) = \frac{(\text{负数}) \cdot (\text{正数})}{(\text{正数})} < 0$.
+		即 $f(x_1) < f(x_2)$.
+	\end{enumerate}
+	根据定义，函数 $f(x)=x+\frac{4}{x}$ 在区间 $(2, +\infty)$ 上是增函数.
+\end{solution}
+\qed
+
+\subsubsection*{法二：导数法（最核心、最高效的方法）}
+导数是研究函数单调性最强有力的工具.导数的几何意义是函数图像在该点切线的斜率，这与函数的“升降”趋势直接相关.
+
+\begin{theorem}[导数与单调性的关系]
+	设函数 $y=f(x)$ 在区间 $\mathbb{I}$ 上可导.
+	\begin{itemize}
+		\item 如果在 $\mathbb{I}$ 上，恒有 $\textcolor{red}{f'(x) > 0}$，那么 $f(x)$ 在 $\mathbb{I}$ 上单调\textbf{递增}.
+		\item 如果在 $\mathbb{I}$ 上，恒有 $\textcolor{red}{f'(x) < 0}$，那么 $f(x)$ 在 $\mathbb{I}$ 上单调\textbf{递减}.
+		\item 如果在 $\mathbb{I}$ 上，恒有 $f'(x) = 0$，那么 $f(x)$ 在 $\mathbb{I}$ 上是\textbf{常数函数}.
+	\end{itemize}
+\end{theorem}
+
+\begin{note}[导数法三步流程]
+	\begin{enumerate}
+		\item \textbf{求定义域并求导}: 确定函数的定义域，并求出其导函数 $f'(x)$.
+		\item \textbf{解不等式}: 解不等式 $f'(x)>0$ 和 $f'(x)<0$，得到 $x$ 的取值范围.
+		\item \textbf{下结论}: 根据解出的范围，结合定义域，写出函数的单调增区间和单调减区间.
+	\end{enumerate}
+\end{note}
+
+\begin{exercise}
+	求函数 $f(x) = \frac{1}{3}x^3 - x^2 - 3x + 1$ 的单调区间.
+\end{exercise}
+\begin{solution}
+	\textbf{【解题步骤】}
+	\begin{enumerate}
+		\item \textbf{求定义域并求导}:
+		函数 $f(x)$ 是多项式函数，其定义域为 $\mathbb{R}$.
+		求导得：$f'(x) = x^2 - 2x - 3$.
+		
+		\item \textbf{解不等式}:
+		令 $f'(x) = x^2 - 2x - 3 = 0$，分解因式得 $(x-3)(x+1)=0$，解得 $x=3$ 或 $x=-1$.
+		这两个点将数轴分为三个区间 $(-\infty, -1), (-1, 3), (3, +\infty)$.
+		\begin{itemize}
+			\item 令 $f'(x) > 0$，即 $(x-3)(x+1)>0$，解得 $x > 3$ 或 $x < -1$.
+			\item 令 $f'(x) < 0$，即 $(x-3)(x+1)<0$，解得 $-1 < x < 3$.
+		\end{itemize}
+		
+		\item \textbf{下结论}:
+		根据导数与单调性的关系：
+		\begin{itemize}
+			\item 当 $x \in (-\infty, -1)$ 或 $x \in (3, +\infty)$ 时，$f'(x)>0$，函数单调递增.
+			\item 当 $x \in (-1, 3)$ 时，$f'(x)<0$，函数单调递减.
+		\end{itemize}
+	\end{enumerate}
+	\textbf{【最终答案】}
+	函数的单调增区间为 $\textcolor{red}{(-\infty, -1)}$ 和 $\textcolor{red}{(3, +\infty)}$.
+	函数的单调减区间为 $\textcolor{red}{(-1, 3)}$.
+\end{solution}
+\qed
+
+\subsection{单调性的应用}
+单调性是解决许多数学问题的基础.
+\begin{enumerate}
+	\item \textbf{比较大小}: 若函数 $f(x)$ 在区间 $\mathbb{I}$ 上单调递增，则对于任意 $a,b \in \mathbb{I}$，有 $a>b \iff f(a)>f(b)$.若单调递减，则 $a>b \iff f(a)<f(b)$.
+	\item \textbf{解不等式}: 对于形如 $f(g(x)) > f(h(x))$ 的不等式，可以利用单调性“脱去”外层函数 $f$，转化为关于内层函数的不等式.
+	\begin{itemize}
+		\item 若 $f$ 单调递增，则 $g(x) > h(x)$.
+		\item 若 $f$ 单调递减，则 $g(x) < h(x)$.
+	\end{itemize}
+	\textcolor{red}{注意：转化后的不等式，其解集必须与原不等式的定义域取交集！}
+	\item \textbf{求函数值域/最值}: 若函数在闭区间 $[a,b]$ 上单调，则其最值必在区间端点处取得.
+	\begin{itemize}
+		\item 若单调递增，则 $f(x)_{\min}=f(a), f(x)_{\max}=f(b)$.
+		\item 若单调递减，则 $f(x)_{\min}=f(b), f(x)_{\max}=f(a)$.
+	\end{itemize}
+\end{enumerate}
+
+\subsubsection*{复合函数的单调性}
+许多复杂的函数，本质上都可以看作是由若干个简单的基本函数“嵌套”而成的，这就是\textbf{复合函数}.例如，函数 $y=\sqrt{x^2+1}$ 就是由内层函数 $u=g(x)=x^2+1$ 和外层函数 $y=f(u)=\sqrt{u}$ 复合而成.
+
+要判断复合函数 $y=f(g(x))$ 的单调性，我们不能只看“整体”，而要像分析链条一样，\textbf{逐层分析}，看自变量 $x$ 的变化是如何通过内层函数传递给中间变量 $u$，再通过外层函数最终影响到因变量 $y$ 的.
+
+\paragraph{从定义出发的推导过程}
+我们的出发点，永远是单调性的基本定义.设 $x_1, x_2$ 是复合函数定义域内任意两点，且 $x_1 < x_2$.我们来追踪这个“变化”是如何传递的：
+\begin{enumerate}
+	\item \textbf{第一步：$x$ 的变化影响 $u$}
+	\begin{itemize}
+		\item 如果内函数 $u=g(x)$ 是\textbf{增函数}，那么当 $x_1 < x_2$ 时，不等号方向\textbf{保持不变}，得到 $g(x_1) < g(x_2)$，即 $u_1 < u_2$.
+		\item 如果内函数 $u=g(x)$ 是\textbf{减函数}，那么当 $x_1 < x_2$ 时，不等号方向\textbf{发生反转}，得到 $g(x_1) > g(x_2)$，即 $u_1 > u_2$.
+	\end{itemize}
+	\item \textbf{第二步：$u$ 的变化影响 $y$}
+	\begin{itemize}
+		\item 如果外函数 $y=f(u)$ 是\textbf{增函数}，它会\textbf{保持}输入变量的不等号方向.即：若 $u_1 < u_2$，则 $f(u_1) < f(u_2)$；若 $u_1 > u_2$，则 $f(u_1) > f(u_2)$.
+		\item 如果外函数 $y=f(u)$ 是\textbf{减函数}，它会\textbf{反转}输入变量的不等号方向.即：若 $u_1 < u_2$，则 $f(u_1) > f(u_2)$；若 $u_1 > u_2$，则 $f(u_1) < f(u_2)$.
+	\end{itemize}
+\end{enumerate}
+
+\paragraph{结论的形成}
+现在我们把这两个步骤串联起来，分析所有四种情况：
+\begin{itemize}
+	\item \textbf{情况一：外增内增 (增 + 增)}
+	$x_1 < x_2 \xrightarrow{\text{内增，保持}} u_1 < u_2 \xrightarrow{\text{外增，保持}} y_1 < y_2$.
+	\textbf{结果：} $x$ 增加，$y$ 也增加.复合函数为\textbf{增函数}.
+	
+	\item \textbf{情况二：外减内减 (减 + 减)}
+	$x_1 < x_2 \xrightarrow{\text{内减，反转}} u_1 > u_2 \xrightarrow{\text{外减，再反转}} y_1 < y_2$.
+	\textbf{结果：} $x$ 增加，$y$ 也增加.复合函数为\textbf{增函数}.
+	
+	\item \textbf{情况三：外增内减 (增 + 减)}
+	$x_1 < x_2 \xrightarrow{\text{内减，反转}} u_1 > u_2 \xrightarrow{\text{外增，保持}} y_1 > y_2$.
+	\textbf{结果：} $x$ 增加，$y$ 反而减小.复合函数为\textbf{减函数}.
+	
+	\item \textbf{情况四：外减内增 (减 + 增)}
+	$x_1 < x_2 \xrightarrow{\text{内增，保持}} u_1 < u_2 \xrightarrow{\text{外减，反转}} y_1 > y_2$.
+	\textbf{结果：} $x$ 增加，$y$ 反而减小.复合函数为\textbf{减函数}.
+\end{itemize}
+
+\begin{theorem}[复合函数单调性法则]
+	复合函数 $y=f(g(x))$ 的单调性由其内外层函数的单调性共同决定，其规律可总结为“\textbf{同增异减}”.
+	\begin{itemize}
+		\item 如果内、外层函数单调性\textbf{相同}（同为增函数或同为减函数），则复合函数为\textbf{增函数}.
+		\item 如果内、外层函数单调性\textbf{相异}（一个增函数一个减函数），则复合函数为\textbf{减函数}.
+	\end{itemize}
+	\begin{center}
+		\begin{tabular}{ccc}
+			\toprule
+			\textbf{外函数 $f(u)$} & \textbf{内函数 $g(x)$} & \textbf{复合函数 $f(g(x))$} \\
+			\midrule
+			增 & 增 & \textcolor{blue}{增} \\
+			减 & 减 & \textcolor{blue}{增} \\
+			\midrule
+			增 & 减 & \textcolor{red}{减} \\
+			减 & 增 & \textcolor{red}{减} \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{theorem}
+
+\begin{note}[【核心注意】定义域的制约]
+	在使用上述法则时，必须牢记一个前提：
+	\begin{enumerate}
+		\item 首先要求出整个复合函数的\textbf{定义域}.
+		\item 内函数 $u=g(x)$ 的\textbf{值域}，必须是外函数 $y=f(u)$ \textbf{定义域的子集}.
+		\item 外函数 $f(u)$ 的单调性，是在\textbf{内函数的值域}这个范围内讨论的.
+	\end{enumerate}
+\end{note}
+
+\begin{exercise}
+	求函数 $y = \log_{0.5}(x^2-2x-3)$ 的单调区间.
+\end{exercise}
+\begin{solution}
+	\textbf{【思路分析】}
+	\textcolor{green!50!black}{这是一个典型的复合函数.我们将函数拆分为内外两层，分别判断其单调性，然后根据“同增异减”的法则，在复合函数的定义域内确定最终的单调区间.}
+	
+	\textbf{【解题步骤】}
+	\begin{enumerate}
+		\item \textbf{确定定义域}:
+		要使对数有意义，其真数必须大于零.
+		$x^2-2x-3 > 0 \implies (x-3)(x+1) > 0$
+		解得 $x > 3$ 或 $x < -1$.
+		所以，函数的定义域为 $(-\infty, -1) \cup (3, +\infty)$.
+		
+		\item \textbf{拆分内外层函数}:
+		\begin{itemize}
+			\item 内函数：$u = g(x) = x^2-2x-3$，这是一个开口向上，对称轴为 $x=1$ 的二次函数.
+			\item 外函数：$y = f(u) = \log_{0.5} u$，这是一个底数小于1的对数函数.
+		\end{itemize}
+		
+		\item \textbf{分析内外层函数的单调性}:
+		\begin{itemize}
+			\item \textbf{内函数 $g(x)$}:
+			在 $(-\infty, 1)$ 上单调递减；在 $(1, +\infty)$ 上单调递增.
+			\item \textbf{外函数 $f(u)$}:
+			因为底数 $0.5 \in (0,1)$，所以外函数在其定义域 $(0, +\infty)$ 上是\textbf{单调递减}的.
+		\end{itemize}
+		
+		\item \textbf{结合定义域，应用“同增异减”法则}:
+		\begin{itemize}
+			\item \textbf{当 $x \in (-\infty, -1)$ 时}:
+			内函数 $g(x)$ 在此区间上是\textbf{减函数}.
+			外函数 $f(u)$ 是\textbf{减函数}.
+			根据“\textbf{减减为增}”，复合函数在 $(-\infty, -1)$ 上是\textbf{增函数}.
+			
+			\item \textbf{当 $x \in (3, +\infty)$ 时}:
+			内函数 $g(x)$ 在此区间上是\textbf{增函数}.
+			外函数 $f(u)$ 是\textbf{减函数}.
+			根据“\textbf{减增为减}”，复合函数在 $(3, +\infty)$ 上是\textbf{减函数}.
+		\end{itemize}
+	\end{enumerate}
+	\textbf{【最终答案】}
+	函数的单调增区间为 $\textcolor{red}{(-\infty, -1)}$，单调减区间为 $\textcolor{red}{(3, +\infty)}$.
+\end{solution}
+\qed
+
+\subsubsection*{常见错误与理解大坑}
+
+在处理单调性问题时，一些看似“理所当然”的写法和想法，实际上可能违反了其严格的数学定义，从而导致失分.以下是两个最高频的误区，务必加以警惕.
+
+\paragraph{误区一：将多个单调区间用“∪”（并集）连接}
+【陷阱分析】
+这是一个在概念理解上最根本的错误.我们来看一个典型的反例：函数 $f(x) = \frac{1}{x}$.
+通过求导 $f'(x)=-\frac{1}{x^2}<0$，我们知道它的单调减区间是 $(-\infty, 0)$ 和 $(0, +\infty)$.
+	
+如果我们将它的单调减区间错误地写成 $(-\infty, 0) \cup (0, +\infty)$，这意味着函数在\textbf{整个并集}上都单调递减.根据定义，我们应该能在这个集合中任取 $x_1 < x_2$，都有 $f(x_1) > f(x_2)$.
+	
+现在，我们来“证伪”它：取 $x_1 = -1, x_2 = 1$.显然 $x_1, x_2$ 都在这个并集内，且 $x_1 < x_2$.
+但是，我们计算函数值得：$f(x_1) = f(-1) = -1$， $f(x_2) = f(1) = 1$.
+结果是 $f(x_1) < f(x_2)$，这\textbf{不满足}减函数的定义！
+	
+\textbf{根本原因}：单调性是定义在\textbf{一个连续的区间}上的性质.“并集”符号 $\cup$ 将两个不相连的区间“拼”在了一起，但函数在跨越这两个区间时，其大小关系可能被破坏.
+
+\begin{note}[正确书写方式]
+	当一个函数有多个独立的单调区间时，必须\textbf{分开书写}，用“\textbf{和}”、“\textbf{，}”（逗号）或者“\textbf{与}”连接.
+	例如，函数 $f(x)=\frac{1}{x}$ 的单调减区间是 $(-\infty, 0)$ \textbf{和} $(0, +\infty)$.
+\end{note}
+
+\paragraph{误区二：忽略定义域，直接求导解不等式}
+【陷阱分析】
+函数的任何性质都不能脱离其定义域而独立存在.单调区间必须是\textbf{定义域的子集}.如果先不求定义域，直接求导解出 $f'(x)>0$ 的范围，可能会得到一个比实际定义域更大的区间，从而得出错误的结论.
+
+\begin{note}[解题铁律]
+	研究任何函数性质（单调性、奇偶性、最值等）的\textbf{第一步}，永远是\textbf{求出该函数的定义域}.
+\end{note}
+
+\begin{exercise}[综合辨析题]
+	求函数 $f(x) = \ln(x) + \frac{2}{x}$ 的单调区间.
+\end{exercise}
+\begin{solution}
+	\textbf{【思路分析】}
+	\textcolor{green!50!black}{这是一个典型的、需要警惕上述两大误区的题目.我们将严格遵循“先定义域，后求导，再求解”的流程，并注意单调区间的正确书写.}
+	
+	\textbf{【解题步骤】}
+	\begin{enumerate}
+		\item \textbf{【第一步】确定定义域}:
+		函数 $f(x)$ 由对数项 $\ln(x)$ 和分式项 $\frac{2}{x}$ 组成.
+		\begin{itemize}
+			\item $\ln(x)$ 要求 $x > 0$.
+			\item $\frac{2}{x}$ 要求 $x \neq 0$.
+		\end{itemize}
+		取交集，得到函数的定义域为 $\textcolor{red}{(0, +\infty)}$.
+		\textcolor{red}{【陷阱分析】这一步至关重要！后续我们求出的所有单调区间，都必须是这个定义域的子集.}
+		
+		\item \textbf{【第二步】求导函数}:
+		$f'(x) = (\ln x)' + (2x^{-1})' = \frac{1}{x} - 2x^{-2} = \frac{1}{x} - \frac{2}{x^2}$.
+		
+		\item \textbf{【第三步】解不等式}:
+		为了方便求解，我们将导函数通分：$f'(x) = \frac{x-2}{x^2}$.
+		因为定义域为 $x>0$，所以分母 $x^2$ 恒为正.导函数的符号完全由分子 $x-2$ 的符号决定.
+		\begin{itemize}
+			\item 令 $f'(x) > 0 \implies \frac{x-2}{x^2} > 0 \implies x-2 > 0 \implies x > 2$.
+			\item 令 $f'(x) < 0 \implies \frac{x-2}{x^2} < 0 \implies x-2 < 0 \implies x < 2$.
+		\end{itemize}
+		
+		\item \textbf{【第四步】结合定义域下结论}:
+		我们将上一步解出的范围，与定义域 $(0, +\infty)$ 取交集.
+		\begin{itemize}
+			\item 单调递增：$\{x \mid x>2\} \cap \{x \mid x>0\} = (2, +\infty)$.
+			\item 单调递减：$\{x \mid x<2\} \cap \{x \mid x>0\} = (0, 2)$.
+		\end{itemize}
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}[scale=1.2]
+				\draw[->] (-1,0) -- (5,0) node[below] {$x$};
+				\draw[->] (0,-1) -- (0,4) node[left] {$y$};
+				% 定义域
+				\draw[gray, line width=2pt, opacity=0.3] (0,0) -- (5,0);
+				\node[above, gray] at (2.5,0) {定义域 $(0, +\infty)$};
+				% 关键点
+				\draw[red, dashed] (2,0) node[below] {$2$} -- (2, {ln(2)+1}) node[right]{极小值点};
+				% 函数图像
+				\draw[blue, thick, smooth, domain=0.2:4.5] plot (\x, {ln(\x)+2/\x}) node[above right] {$f(x)$};
+				\node at (1, {ln(1)+2}) {$\searrow$}; \node[below] at (1, 2) {递减};
+				\node at (3.5, {ln(3.5)+2/3.5}) {$\nearrow$}; \node[above] at (3.5, 1.82) {递增};
+			\end{tikzpicture}
+			\caption{$f(x)=\ln(x)+\frac{2}{x}$ 的图像与单调性}
+		\end{figure}
+		
+	\end{enumerate}
+	\textbf{【最终答案】}
+	函数的单调增区间是 $\textcolor{red}{(2, +\infty)}$.
+	函数的单调减区间是 $\textcolor{red}{(0, 2)}$.
+\end{solution}
+\qed
+
+\subsubsection*{单调函数的四则运算}
+当我们由两个已知的单调函数通过加、减、乘、除运算得到一个新函数时，新函数的单调性是怎样的呢？我们可以从最基本的定义和导数两个角度出发，来推导这些运算法则.
+
+\paragraph{1. 加法运算}
+\begin{theorem}[加法律]
+	\begin{itemize}
+		\item 增函数 + 增函数 = 增函数
+		\item 减函数 + 减函数 = 减函数
+	\end{itemize}
+\end{theorem}
+\begin{proof}
+	我们以“增函数 + 增函数 = 增函数”为例进行证明.
+	设 $f(x), g(x)$ 在区间 $\mathbb{I}$ 上均为增函数，令 $F(x) = f(x) + g(x)$.
+	
+	\textbf{【方法一：定义法】}
+	\begin{enumerate}
+		\item \textbf{取值}: 任取 $x_1, x_2 \in \mathbb{I}$，且设 $x_1 < x_2$.
+		\item \textbf{分析已知}: 因为 $f(x), g(x)$ 都是增函数，所以 $f(x_1) < f(x_2)$ 且 $g(x_1) < g(x_2)$.
+		\item \textbf{作差}: $F(x_1) - F(x_2) = [f(x_1)+g(x_1)] - [f(x_2)+g(x_2)] = [f(x_1)-f(x_2)] + [g(x_1)-g(x_2)]$.
+		\item \textbf{定号}: 因为 $f(x_1)-f(x_2) < 0$ 且 $g(x_1)-g(x_2) < 0$，所以
+		$F(x_1)-F(x_2) = (\text{负数}) + (\text{负数}) < 0$.
+		即 $F(x_1) < F(x_2)$.故 $F(x)$ 在区间 $\mathbb{I}$ 上是增函数.
+	\end{enumerate}
+	
+	\textbf{【方法二：导数法】}
+	\begin{enumerate}
+		\item \textbf{求导}: $F'(x) = [f(x)+g(x)]' = f'(x)+g'(x)$.
+		\item \textbf{定号}: 因为 $f(x), g(x)$ 都是增函数，所以 $f'(x)>0$ 且 $g'(x)>0$.
+		因此，$F'(x) = (\text{正数}) + (\text{正数}) > 0$.
+		故 $F(x)$ 在区间 $\mathbb{I}$ 上是增函数.
+	\end{enumerate}
+\end{proof}
+\qed
+
+\paragraph{2. 减法运算}
+\begin{theorem}[减法律]
+	\begin{itemize}
+		\item 增函数 - 减函数 = 增函数
+		\item 减函数 - 增函数 = 减函数
+	\end{itemize}
+\end{theorem}
+\begin{proof}
+	我们以“增函数 - 减函数 = 增函数”为例.
+	设 $f(x)$ 为增函数，$g(x)$ 为减函数，令 $F(x) = f(x) - g(x)$.
+	
+	\textbf{【方法一：定义法】}
+	任取 $x_1, x_2 \in \mathbb{I}$ 且 $x_1 < x_2$.则 $f(x_1) < f(x_2)$ 且 $g(x_1) > g(x_2)$.
+	$F(x_1) - F(x_2) = [f(x_1)-f(x_2)] - [g(x_1)-g(x_2)]$.
+	其中 $f(x_1)-f(x_2) < 0$，$g(x_1)-g(x_2) > 0$.
+	所以 $F(x_1)-F(x_2) = (\text{负数}) - (\text{正数}) < 0$.故 $F(x)$ 是增函数.
+	
+	\textbf{【方法二：导数法】}
+	$F'(x) = f'(x) - g'(x)$.
+	因为 $f(x)$ 是增函数，$g(x)$ 是减函数，所以 $f'(x)>0, g'(x)<0$.
+	因此，$F'(x) = (\text{正数}) - (\text{负数}) > 0$.故 $F(x)$ 是增函数.
+\end{proof}
+\qed
+
+【不确定情况的分析】
+为什么没有“增函数 - 增函数”的结论？
+	
+设 $f(x), g(x)$ 均为增函数， $F(x) = f(x)-g(x)$.
+	\begin{itemize}
+		\item 从导数看：$F'(x)=f'(x)-g'(x) = (\text{正数}) - (\text{正数})$，其结果的符号\textbf{不确定}.它取决于两个增函数“增长的快慢”.
+		\item 例如：$f(x)=2x$ (增) 与 $g(x)=x$ (增) 相减，得 $F(x)=x$ (增).
+		\item 例如：$f(x)=x$ (增) 与 $g(x)=2x$ (增) 相减，得 $F(x)=-x$ (减).
+\end{itemize}
+因此，“增 - 增”和“减 - 减”的单调性是不确定的，需要具体问题具体分析.
+
+
+\paragraph{3. 乘除法运算}
+【乘除法的复杂性】
+乘除法运算的单调性更为复杂，因为它不仅与函数的增减性有关，还与\textbf{函数值自身的正负}有关.
+
+\begin{theorem}[乘法律 - 特殊情况]
+	若函数 $f(x), g(x)$ 在区间 $\mathbb{I}$ 上\textbf{均为正函数}（即 $f(x)>0, g(x)>0$），则有：
+	\begin{itemize}
+		\item (正)增函数 $\times$ (正)增函数 = (正)增函数
+	\end{itemize}
+\end{theorem}
+\begin{proof}
+	设 $f(x)>0, g(x)>0$ 且均为增函数，令 $F(x) = f(x)g(x)$.
+	
+	\textbf{【方法一：定义法】}
+	任取 $x_1, x_2 \in \mathbb{I}$ 且 $x_1 < x_2$.则有 $0 < f(x_1) < f(x_2)$ 且 $0 < g(x_1) < g(x_2)$.
+	根据不等式的性质，同向不等式两边同为正数，则相乘后不等号方向不变.
+	所以 $f(x_1)g(x_1) < f(x_2)g(x_2)$，即 $F(x_1) < F(x_2)$.故 $F(x)$ 是增函数.
+	
+	\textbf{【方法二：导数法】}
+	$F'(x) = [f(x)g(x)]' = f'(x)g(x) + f(x)g'(x)$.
+	因为 $f(x), g(x)$ 为正增函数，所以 $f(x)>0, g(x)>0, f'(x)>0, g'(x)>0$.
+	因此，$F'(x) = (\text{正})(\text{正}) + (\text{正})(\text{正}) = (\text{正})+(\text{正}) > 0$.故 $F(x)$ 是增函数.
+\end{proof}
+\qed
+
+\begin{note}[结论总结表]
+	下表总结了单调函数四则运算的确定性结论（设 $f, g$ 分别代表增函数和减函数）：
+	\begin{center}
+		\begin{tabular}{ccc}
+			\toprule
+			\textbf{运算} & \textbf{表达式} & \textbf{新函数单调性} \\
+			\midrule
+			\textbf{加法} & $f+f$ & 增 \\
+			& $g+g$ & 减 \\
+			\midrule
+			\textbf{减法} & $f-g$ & 增 \\
+			& $g-f$ & 减 \\
+			\midrule
+			\textbf{乘法} & $f \cdot f$ (若 $f>0$) & 增 \\
+			& $g \cdot g$ (若 $g>0$) & 减 \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	\textbf{所有未在表中列出的组合，其单调性不确定，需具体问题具体分析.}
+\end{note}
+
+\section{函数的奇偶性}
+
+
+如果说单调性描述了函数图像的“升降趋势”，那么奇偶性则揭示了函数图像的“\textbf{对称之美}”.它是一种深刻的几何性质在代数上的体现.掌握了奇偶性，我们就能像拥有了一面特殊的“镜子”，只需研究函数一半的性质，就能洞悉其整体的面貌.这不仅能大大简化我们的计算与分析，更能帮助我们快速绘制和理解函数图像.
+
+\subsection{奇偶性的定义与几何意义}
+
+【首要前提：定义域具有对称性】
+在讨论一个函数是否具有奇偶性之前，必须进行一项\textbf{前置检查}：它的\textbf{定义域是否关于原点对称}.
+	
+一个数集 $\mathbb{D}$ 关于原点对称，指的是：如果数 $x$ 在这个集合里，那么它的相反数 $-x$ 也必须在这个集合里（即，若 $x \in \mathbb{D}$，则必有 $-x \in \mathbb{D}$）.
+	
+\textbf{如果一个函数的定义域不关于原点对称，那么它既不是奇函数，也不是偶函数}，我们称之为非奇非偶函数.这是判断奇偶性的“第一道门槛”.
+
+
+\begin{definition}[偶函数]
+	设函数 $y=f(x)$ 的定义域 $\mathbb{D}$ 关于原点对称.如果对于 $\mathbb{D}$ 内的\textbf{任意一个} $x$，\textbf{恒有}
+	\begin{equation}
+		\textcolor{red}{f(-x) = f(x)}
+	\end{equation}
+	那么就称函数 $f(x)$ 为\textbf{偶函数}.
+\end{definition}
+
+\begin{note}[偶函数的几何意义]
+	等式 $f(-x)=f(x)$ 意味着，自变量取相反数时，函数值保持不变.这反映在图像上，就是函数 $y=f(x)$ 的图像关于 $\textcolor{blue}{y}$ \textbf{轴对称}.
+\end{note}
+
+\begin{definition}[奇函数]
+	设函数 $y=f(x)$ 的定义域 $\mathbb{D}$ 关于原点对称.如果对于 $\mathbb{D}$ 内的\textbf{任意一个} $x$，\textbf{恒有}
+	\begin{equation}
+		\textcolor{red}{f(-x) = -f(x)}
+	\end{equation}
+	那么就称函数 $f(x)$ 为\textbf{奇函数}.
+\end{definition}
+
+\begin{note}[奇函数的几何意义]
+	等式 $f(-x)=-f(x)$ 意味着，自变量取相反数时，函数值也取相反数.这反映在图像上，就是函数 $y=f(x)$ 的图像关于\textbf{原点中心对称}.
+\end{note}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1, every node/.style={font=\small}]
+
+	\begin{scope}
+		\node[below] at (0, -1) {图 (a): 偶函数 $y=x^2$};
+
+		\draw[->] (-2.5,0) -- (2.5,0) node[below] {$x$};
+		\draw[->] (0,-0.5) -- (0,4.5) node[left] {$y$};
+		
+		\draw[blue, thick, smooth, domain=-2:2] plot (\x, {\x*\x});
+		
+		\node[fill=red, circle, inner sep=1.5pt] (P1) at (1.5, {1.5*1.5}) {}; 
+		\node[above, red] at (P1) {$(x, x^2)$};
+
+		\node[fill=red, circle, inner sep=1.5pt] (P2) at (-1.5, {1.5*1.5}) {}; 
+		\node[above, red] at (P2) {$(-x, x^2)$};
+
+		\draw[dashed, gray] (P1) -- (P2);
+		\draw[dashed, gray] (1.5,0) -- (P1);
+		\draw[dashed, gray] (-1.5,0) -- (P2);
+	\end{scope}
+	
+	\begin{scope}[xshift=7cm]
+		\node[below] at (0, -4.5) {图 (b): 奇函数 $y=x^3$};
+		\draw[->] (-2.5,0) -- (2.5,0) node[below] {$x$};
+		\draw[->] (0,-4.5) -- (0,4.5) node[left] {$y$};
+	
+		\draw[purple, thick, smooth, domain=-1.6:1.6] plot (\x, {\x*\x*\x});
+		
+		\node[fill=red, circle, inner sep=1.5pt] (Q1) at (1.2, {1.2*1.2*1.2}) {}; 
+		\node[above right, red] at (Q1) {$(x, x^3)$};
+
+		\node[fill=red, circle, inner sep=1.5pt] (Q2) at (-1.2, {-1.2*1.2*1.2}) {}; 
+		\node[below left, red] at (Q2) {$(-x, -x^3)$};
+
+		\draw[dashed, gray] (Q1) -- (Q2);
+		\fill (0,0) circle (1.5pt);
+	\end{scope}
+\end{tikzpicture}
+\caption{基本奇偶函数的几何对称性}
+\end{figure}
+
+\subsection{奇偶性的判断方法}
+
+\begin{note}[判断三步法：先定义域，再判关系]
+	\begin{enumerate}
+		\item \textbf{【第一步】检查定义域}: 判断函数的定义域是否关于原点对称.
+		\begin{itemize}
+			\item \textbf{若不对称}，则该函数为\textbf{非奇非偶函数}，判断结束.
+			\item \textbf{若对称}，则进入第二步.
+		\end{itemize}
+		\item \textbf{【第二步】计算 $f(-x)$}: 将函数解析式中的所有 $x$ 替换为 $-x$，并对结果进行化简.
+		\item \textbf{【第三步】比较并下结论}: 比较化简后的 $f(-x)$ 与原函数 $f(x)$ 的关系.
+		\begin{itemize}
+			\item 若 $f(-x) = f(x)$，则为\textbf{偶函数}.
+			\item 若 $f(-x) = -f(x)$，则为\textbf{奇函数}.
+			\item 若既不等于 $f(x)$ 也不等于 $-f(x)$，则为\textbf{非奇非偶函数}.
+		\end{itemize}
+	\end{enumerate}
+\end{note}
+
+\begin{exercise}
+	判断函数 $f(x) = \frac{x^2}{|x|-1} + \ln\left(\frac{2+x}{2-x}\right)$ 的奇偶性.
+\end{exercise}
+\begin{solution}
+	\textcolor{green!50!black}{这个函数结构复杂，我们不急于直接计算.可以先将函数拆分为两部分，分别判断它们的奇偶性，然后利用奇偶函数的运算法则来得出最终结论.}
+	
+	设 $g(x) = \frac{x^2}{|x|-1}$，$h(x) = \ln\left(\frac{2+x}{2-x}\right)$，则 $f(x)=g(x)+h(x)$.
+
+	\begin{enumerate}
+		\item \textbf{判断 $g(x)$ 的奇偶性}:
+		\begin{itemize}
+			\item \textbf{定义域}: $|x|-1 \neq 0 \implies |x| \neq 1 \implies x \neq \pm 1$.定义域为 $(-\infty, -1)\cup(-1,1)\cup(1,\infty)$，关于原点对称.
+			\item \textbf{计算 $g(-x)$}: $g(-x) = \frac{(-x)^2}{|-x|-1} = \frac{x^2}{|x|-1} = g(x)$.
+			\item \textbf{结论}: $g(x)$ 是\textbf{偶函数}.
+		\end{itemize}
+		
+		\item \textbf{判断 $h(x)$ 的奇偶性}:
+		\begin{itemize}
+			\item \textbf{定义域}: $\frac{2+x}{2-x} > 0 \implies (2+x)(2-x) > 0 \implies (x+2)(x-2) < 0$.解得 $-2 < x < 2$.定义域为 $(-2,2)$，关于原点对称.
+			\item \textbf{计算 $h(-x)$}: $h(-x) = \ln\left(\frac{2-x}{2+x}\right) = \ln\left[\left(\frac{2+x}{2-x}\right)^{-1}\right] = -\ln\left(\frac{2+x}{2-x}\right) = -h(x)$.
+			\item \textbf{结论}: $h(x)$ 是\textbf{奇函数}.
+		\end{itemize}
+		
+		\item \textbf{判断 $f(x)$ 的奇偶性}:
+		\begin{itemize}
+			\item \textbf{定义域}: $f(x)$ 的定义域是 $g(x)$ 和 $h(x)$ 定义域的交集，即 $(-2, -1)\cup(-1,1)\cup(1,2)$，此定义域关于原点对称.
+			\item \textbf{应用法则}: $f(x) = g(x) + h(x) = (\text{偶函数}) + (\text{奇函数})$.
+			计算 $f(-x) = g(-x)+h(-x) = g(x)-h(x)$.它既不等于 $f(x)$ 也不等于 $-f(x)$.
+		\end{itemize}
+	\end{enumerate}
+	\textbf{【最终答案】}
+	函数 $f(x)$ 是\textbf{非奇非偶函数}.
+\end{solution}
+\qed
+
+\subsection{奇偶性的性质与应用}
+
+\begin{enumerate}
+	\item \textbf{奇函数在原点的性质}:
+	如果一个\textbf{奇函数} $f(x)$ 在 $x=0$ 处有定义，那么\textbf{必有 $f(0)=0$}.
+	\begin{proof}
+		因为 $f(x)$ 是奇函数，所以 $f(-x)=-f(x)$ 对定义域内所有 $x$ 成立.
+		若 $x=0$ 在定义域内，则令 $x=0$，有 $f(0) = -f(0) \implies 2f(0)=0 \implies f(0)=0$.
+	\end{proof}
+	\qed
+	
+	\item \textbf{奇偶函数的四则运算}:
+	设 $f(x), g(x)$ 的定义域的交集为 $\mathbb{D}$，且 $\mathbb{D}$ 关于原点对称.
+	\begin{center}
+		\begin{tabular}{ll}
+			\toprule
+			\textbf{运算} & \textbf{结论} \\
+			\midrule
+			\textbf{加减法} & 奇 $\pm$ 奇 = 奇； 偶 $\pm$ 偶 = 偶； 奇 $\pm$ 偶 = 非奇非偶 \\
+			\textbf{乘除法} & 奇 $\times$ 奇 = 偶； 偶 $\times$ 偶 = 偶； 奇 $\times$ 偶 = 奇 \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	\textcolor{green!50!black}{记忆口诀：可类比负数的运算法则，将“奇”看作“-1”，“偶”看作“+1”.例如，奇 $\times$ 偶 $\to (-1) \times (+1) = -1 \to$ 奇.}
+	
+	\item \textbf{奇偶性与单调性的关系}:
+	\begin{itemize}
+		\item \textbf{偶函数}在关于原点对称的两个单调区间上，单调性\textbf{相反}.
+		\item \textbf{奇函数}在关于原点对称的两个单调区间上，单调性\textbf{相同}.
+	\end{itemize}
+	
+	\item \textbf{应用：简化分析与计算}:
+	奇偶性的最大应用价值在于“\textbf{化繁为简}”.
+	\begin{itemize}
+		\item \textbf{知一半而知全部}: 由于对称性，我们只需分析函数在 $x>0$ 区间的性质（如单调性、最值），就可以推知其在 $x<0$ 区间的性质.
+		\item \textbf{化简求值}: 在计算复杂的函数表达式的值时，可以利用奇偶性简化.例如，求 $f(a)+f(-a)$，若 $f$ 为奇函数，则结果为0；若 $f$ 为偶函数，则结果为 $2f(a)$.
+	\end{itemize}
+\end{enumerate}
+
+\begin{exercise}
+	已知函数 $f(x)$ 是定义在 $\mathbb{R}$ 上的偶函数，且当 $x \ge 0$ 时，$f(x) = x^2 - 2x$.求 $f(-3)$ 的值.
+\end{exercise}
+\begin{solution}
+	\textcolor{green!50!black}{这道题的核心是利用偶函数的定义 $f(-x)=f(x)$，将一个不在已知解析式范围内的自变量值，转化到已知范围内去求解.}
+
+	\begin{enumerate}
+		\item \textbf{利用偶函数定义}:
+		因为 $f(x)$ 是偶函数，所以对于任意 $x \in \mathbb{R}$，都有 $f(-x)=f(x)$.
+		因此，$f(-3) = f(3)$.
+		
+		\item \textbf{代入已知解析式}:
+		自变量 $3$ 满足 $x \ge 0$ 的条件，所以可以代入已知的解析式中进行计算.
+		$f(3) = 3^2 - 2(3) = 9 - 6 = 3$.
+		
+		\item \textbf{得出结论}:
+		因为 $f(-3)=f(3)$，所以 $f(-3)=3$.
+	\end{enumerate}
+	 $f(-3) = \textcolor{red}{3}$.
+\end{solution}
+\qed
+
+\subsubsection*{常见奇偶函数模型库}
+虽然判断奇偶性的三步法是普适的，但在实战中，我们经常会遇到一些具有典型奇偶性的函数模型.熟练掌握这些模型，能让你在考场上“一眼顶针”函数的对称性，极大地提升解题速度和准确率.
+
+\paragraph{一、常见偶函数模型 ($f(-x) = f(x)$)}
+
+\begin{enumerate}
+	\item \textbf{偶次幂函数}: $f(x) = x^{2n} \ (n \in \mathbb{N}^*)$，例如 $y=x^2, y=x^4$ 等.
+	\begin{proof}[证明]
+		定义域为 $\mathbb{R}$，关于原点对称.
+		计算 $f(-x) = (-x)^{2n} = [(-1) \cdot x]^{2n} = (-1)^{2n} \cdot x^{2n} = 1 \cdot x^{2n} = f(x)$.
+		故为偶函数.
+	\end{proof}
+	\qed
+	
+	\item \textbf{绝对值函数}: $f(x) = |x|$.
+	\begin{proof}[证明]
+		定义域为 $\mathbb{R}$，关于原点对称.
+		计算 $f(-x) = |-x| = |x| = f(x)$.
+		故为偶函数.
+	\end{proof}
+	\qed
+	
+	\item \textbf{余弦函数}: $f(x) = \cos x$.
+	\begin{proof}[证明]
+		定义域为 $\mathbb{R}$，关于原点对称.
+		根据诱导公式，有 $f(-x) = \cos(-x) = \cos x = f(x)$.
+		故为偶函数.
+	\end{proof}
+	\qed
+	
+	\item \textbf{“和对称”模型}: $f(x) = a^x + a^{-x} \ (a>0, a\neq 1)$.
+	\begin{proof}[证明]
+		定义域为 $\mathbb{R}$，关于原点对称.
+		计算 $f(-x) = a^{-x} + a^{-(-x)} = a^{-x} + a^x = f(x)$.
+		故为偶函数.
+	\end{proof}
+	\qed
+\end{enumerate}
+
+\paragraph{二、常见奇函数模型 ($f(-x) = -f(x)$)}
+
+\begin{enumerate}
+	\item \textbf{奇次幂函数}: $f(x) = x^{2n+1} \ (n \in \mathbb{N})$，例如 $y=x, y=x^3$ 等.
+	\begin{proof}[证明]
+		定义域为 $\mathbb{R}$，关于原点对称.
+		计算 $f(-x) = (-x)^{2n+1} = (-1)^{2n+1} \cdot x^{2n+1} = -1 \cdot x^{2n+1} = -f(x)$.
+		故为奇函数.
+	\end{proof}
+	\qed
+	
+	\item \textbf{正弦、正切函数}: $f(x) = \sin x, g(x) = \tan x$.
+	\begin{proof}[证明]
+		$f(x)=\sin x$ 定义域为 $\mathbb{R}$；$g(x)=\tan x$ 定义域为 $\{x|x \neq k\pi + \frac{\pi}{2}, k \in \mathbb{Z}\}$.二者均关于原点对称.
+		根据诱导公式，有 $f(-x) = \sin(-x) = -\sin x = -f(x)$.
+		$g(-x) = \tan(-x) = -\tan x = -g(x)$.
+		故二者均为奇函数.
+	\end{proof}
+	\qed
+	
+	\item \textbf{“差对称”模型}: $f(x) = a^x - a^{-x} \ (a>0, a\neq 1)$.
+	\begin{proof}[证明]
+		定义域为 $\mathbb{R}$，关于原点对称.
+		计算 $f(-x) = a^{-x} - a^{-(-x)} = a^{-x} - a^x = -(a^x - a^{-x}) = -f(x)$.
+		故为奇函数.
+	\end{proof}
+	\qed
+	
+	\item \textbf{对数模型}: $f(x) = \ln\left(\frac{1+x}{1-x}\right)$.
+	\begin{proof}[证明]
+		\begin{itemize}
+			\item \textbf{定义域}: $\frac{1+x}{1-x} > 0 \implies (1+x)(1-x) > 0 \implies (x+1)(x-1)<0$.解得 $-1 < x < 1$.定义域为 $(-1,1)$，关于原点对称.
+			\item \textbf{计算 $f(-x)$}:
+			$f(-x) = \ln\left(\frac{1-x}{1+x}\right) = \ln\left[\left(\frac{1+x}{1-x}\right)^{-1}\right]$.
+			根据对数运算法则 $\ln(M^n) = n \ln M$，得：
+			$f(-x) = -1 \cdot \ln\left(\frac{1+x}{1-x}\right) = -f(x)$.
+		\end{itemize}
+		故为奇函数.
+	\end{proof}
+	\qed
+\end{enumerate}
+
+\begin{note}[模型总结表]
+	\begin{center}
+		\begin{tabularx}{\linewidth}{lXlX}
+			\toprule
+			\multicolumn{2}{c}{\textbf{常见偶函数模型}} & \multicolumn{2}{c}{\textbf{常见奇函数模型}} \\
+			\midrule
+			\textbf{幂函数} & $y=x^2, y=x^4, \dots$ & \textbf{幂函数} & $y=x, y=x^3, \dots$ \\
+			\textbf{绝对值} & $y=|x|$ & \textbf{反比例} & $y=\frac{k}{x}$ \\
+			\textbf{三角函数} & $y=\cos x$ & \textbf{三角函数} & $y=\sin x, y=\tan x$ \\
+			\textbf{复合模型} & $y=a^x+a^{-x}$ & \textbf{复合模型} & $y=a^x-a^{-x}$ \\
+			& & \textbf{对数模型} & $y=\ln\left(\frac{1+x}{1-x}\right)$ \\
+			\bottomrule
+		\end{tabularx}
+	\end{center}
+\end{note}
+
+\section{函数的周期性}
+
+
+\lettrine{在}{探索了}函数图像的“升降趋势”（单调性）与“对称之美”（奇偶性）之后，我们即将迎来函数的第三大核心性质——\textbf{周期性}.它描述的是函数图像中一种优雅的“\textbf{循环往复}”的规律. 周期在大自然中无处不在，比如你日复一日的高三复习生活，抑或是日月更替...春夏秋冬，掌握了函数了周期，更是我们把握规律和未来的起点.
+
+
+\subsection{周期性的定义与核心概念}
+
+\begin{definition}[周期函数]
+	设函数 $y=f(x)$ 的定义域为 $\mathbb{D}$.如果存在一个\textbf{非零常数} $T$，使得对于定义域 $\mathbb{D}$ 内的\textbf{任意}一个 $x$ 值，都有 $x+T \in \mathbb{D}$，并且恒有：
+	\begin{equation}
+		\textcolor{red}{f(x+T) = f(x)}
+	\end{equation}
+	那么，函数 $y=f(x)$ 就称为\textbf{周期函数}，非零常数 $T$ 称为这个函数的\textbf{周期}.
+\end{definition}
+
+\begin{note}[关于周期的深入理解]
+	\begin{enumerate}
+		\item \textbf{周期不唯一}: 如果 $T$ 是函数的一个周期，那么 $2T, 3T, \dots, nT$ (其中 $n \in \mathbb{Z}, n \neq 0$) 也都是它的周期.
+		\item \textbf{【特别注意】周期可为负数}: 定义中只要求 $T$ 是非零常数.因此，如果 $T=2$ 是一个周期，那么 $T=-2$ 也是一个周期，因为 $f(x) = f((x-2)+2)=f(x-2)$，这同样满足定义.在大多数情况下，我们关心的是正周期，但这并不意味着负周期不存在.
+	\end{enumerate}
+\end{note}
+
+\begin{definition}[最小正周期]
+	如果在函数的所有周期中，存在一个\textbf{最小的正数}，那么这个最小的正数就称为该函数的\textbf{最小正周期}.
+	
+	在不作特殊说明的情况下，我们通常所说的“函数的周期”，指的就是其最小正周期.例如，我们说 $y=\sin x$ 的周期是 $2\pi$，指的就是其最小正周期.
+\end{definition}
+
+【并非所有周期函数都有最小正周期】
+一个经典的例子是常数函数 $f(x)=c$.对于任意非零常数 $T$，都有 $f(x+T)=c=f(x)$ 成立.因此，任何非零实数都是它的周期.在这些周期中，不存在一个“最小的正数”，所以常数函数是一个没有最小正周期的周期函数.
+
+
+\subsection{常见性质与重要结论}
+
+周期性常常与对称性紧密相连，许多复杂的函数方程背后，都隐藏着由对称性导出的周期性.
+
+\begin{theorem}[双轴对称 \(\Rightarrow\) 周期性]
+	如果函数 $y=f(x)$ 的图像同时关于两条竖直直线 $x=a$ 和 $x=b$ ($a \neq b$) 对称，那么该函数一定是周期函数，且一个周期为 $T = 2|a-b|$.
+\end{theorem}
+\begin{proof}[思路图解]
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[scale=1]
+			\draw[->, thick] (-1.5,0) -- (8.5,0) node[below] {$x$};
+			\draw[->, thick] (0,-2) -- (0,2) node[left] {$y$};
+			\node at (0,0) [below left] {$O$};
+			
+			\draw[red, dashed, thick] (2,-2) -- (2,2) node[above] {$x=a=2$};
+			\draw[red, dashed, thick] (5,-2) -- (5,2) node[above] {$x=b=5$};
+			
+			\draw[blue, ultra thick] (2,1) .. controls (3.5, -1.5) .. (5,1);
+			
+			\draw[blue, ultra thick, dashed] (5,1) .. controls (6.5, -1.5) .. (8,1);
+
+			\draw[blue, ultra thick, dashed] (2,1) .. controls (0.5, -1.5) .. (-1,1);
+			
+			\fill[blue] (2,1) circle (2pt) node[above left, black] {$P_1$};
+			\fill[blue] (8,1) circle (2pt) node[above right, black] {$P_2$}; 
+			
+			\draw[<->, thick, green!50!black] (2,-1.8) -- (8,-1.8) node[midway, below] {一个周期 $T=2(b-a)=6$};
+			
+			\node at (3.5, -0.5) {\textcolor{blue}{原始图像}};
+			\node[text width=2.5cm, align=center] at (0, 0.5) {\textcolor{gray}{关于 $x=a$ 对称}};
+			\node[text width=2.5cm, align=center] at (7, 0.5) {\textcolor{gray}{关于 $x=b$ 对称}};
+		\end{tikzpicture}
+		\caption{函数图像经过两次轴对称，必然产生周期性}
+	\end{figure}
+\end{proof}
+\qed
+
+\begin{theorem}[由函数方程确定周期性]
+	对于定义在 $\mathbb{R}$ 上的函数 $f(x)$，若存在非零常数 $a$，满足以下关系，则 $f(x)$ 为周期函数：
+	\begin{enumerate}
+		\item 若 $f(x+a) = -f(x)$，则周期 $T=2a$.
+		\begin{proof}
+			$f(x+2a) = f((x+a)+a) = -f(x+a) = -[-f(x)] = f(x)$.
+		\end{proof}
+		\item 若 $f(x+a) = \frac{1}{f(x)}$，则周期 $T=2a$.
+		\begin{proof}
+			$f(x+2a) = f((x+a)+a) = \frac{1}{f(x+a)} = \frac{1}{1/f(x)} = f(x)$.
+		\end{proof}
+		\item 若 $f(x)$ 是奇函数，且图像关于直线 $x=a$ 对称，则周期 $T=4a$.
+		\begin{proof}
+			$f(-x)=-f(x)$ 且 $f(a-x)=f(a+x)$.
+			$f(x+2a) = f(a+(x+a)) = f(a-(x+a)) = f(-x) = -f(x)$.
+			由结论(1)可知，周期为 $2 \times (2a) = 4a$.
+		\end{proof}
+	\end{enumerate}
+\end{theorem}
+
+\subsection{周期函数的四则运算}
+当两个周期函数进行运算时，它们的结果是否仍具有周期性？新的周期又是什么？
+
+\begin{theorem}[周期函数的和、差、积、商]
+	如果函数 $f(x)$ 的周期为 $T_1$，函数 $g(x)$ 的周期为 $T_2$，那么函数 $F(x) = f(x) \pm g(x)$，$G(x) = f(x) \cdot g(x)$，$H(x) = \frac{f(x)}{g(x)}$ (需 $g(x)\neq 0$) 也是周期函数.
+	
+	新函数的周期 $T$ 是 $T_1$ 和 $T_2$ 的\textbf{公倍数}.通常，我们取 $T_1$ 和 $T_2$ 的\textbf{最小公倍数}作为新函数的周期.
+\end{theorem}
+
+\begin{note}[关于公倍数的理解]
+	对于两个周期 $T_1, T_2$，它们的最小公倍数 $T$ 是指满足 $T = n_1 T_1 = n_2 T_2$ 的最小正数，其中 $n_1, n_2$ 均为正整数.
+	
+	这要求 $T_1$ 和 $T_2$ 的比值 $\frac{T_1}{T_2}$ 是一个\textbf{有理数}.如果这个比值是无理数，那么它们的和、差、积、商将不再是周期函数.
+	例如，$f(x)=\sin x$ (周期 $2\pi$) 和 $g(x)=\sin(\sqrt{2}x)$ (周期 $\frac{2\pi}{\sqrt{2}}$) 的和不是周期函数.
+\end{note}
+
+\begin{exercise}
+	求函数 $f(x) = \sin(4x) + \cos(6x)$ 的最小正周期.
+\end{exercise}
+\begin{solution}
+	\textcolor{green!50!black}{这是一个典型的周期函数加法问题.我们需要分别求出两个组成部分的最小正周期，然后求它们的最小公倍数.}
+
+		设 $f_1(x) = \sin(4x)$.其周期 $T_1 = \frac{2\pi}{|\omega|} = \frac{2\pi}{4} = \frac{\pi}{2}$.
+		设 $f_2(x) = \cos(6x)$.其周期 $T_2 = \frac{2\pi}{|\omega|} = \frac{2\pi}{6} = \frac{\pi}{3}$.
+		
+		我们需要找到最小的正数 $T$，使得 $T = n_1 T_1 = n_2 T_2$，即：
+		$T = n_1 \frac{\pi}{2} = n_2 \frac{\pi}{3}$，其中 $n_1, n_2$ 为正整数.
+		$\frac{n_1}{2} = \frac{n_2}{3} \implies 3n_1 = 2n_2$.
+		要使 $n_1, n_2$ 最小，可取 $n_1=2, n_2=3$.
+		
+		$T = 2 \times T_1 = 2 \times \frac{\pi}{2} = \pi$.
+		或者 $T = 3 \times T_2 = 3 \times \frac{\pi}{3} = \pi$.
+
+	函数的最小正周期为 $\textcolor{red}{\pi}$.
+\end{solution}
+\qed
+
+\section{函数的图像变换}
+
+\lettrine{如}{果说}函数的解析式是其内在的基因，那么函数的图像就是其外在的外貌. 掌握图像变换，就如同掌握了遥遥领先的整容术，能让我们能够从一个最基本的函数图像出发，通过一系列标准化的操作，绘制出千变万化的复杂函数图像.这种“由简到繁，由已知到未知”的能力，是数形结合思想的精髓所在，也是我们快速洞察函数性质、解决复杂问题的关键技能.本节，我们将系统地解构这些变换背后的统一原理.
+
+\subsection{变换的基本原理，坐标的映射}
+所有的图像变换，其本质都可以归结为一个简单而深刻的原理：\textbf{新旧坐标之间的代换关系}.
+
+设原函数图像为 $y=f(x)$，其上任意一点的坐标为 $(x_0, y_0)$，满足 $y_0=f(x_0)$.经过某种变换后，点 $(x_0, y_0)$ 移动到了新图像上的点 $(x,y)$.我们的任务，就是找到新坐标 $(x,y)$ 与旧坐标 $(x_0, y_0)$ 之间的关系，然后将旧坐标用新坐标表示，代回原函数方程 $y_0=f(x_0)$，从而得到新图像的方程 $y=g(x)$.
+
+\begin{note}[核心思想]
+	\textbf{动的是点，变的是坐标，方程要反向代换.}
+	例如，若图像上的点向右平移了 $a$ 个单位，即新点的横坐标 $x$ 是由旧点的横坐标 $x_0$ 加上 $a$ 得来的，即 $x=x_0+a$.那么，在建立新方程时，我们需要用新坐标来表示旧坐标，即 $x_0=x-a$，然后代入原方程.这就是为什么“左加右减”的根本原因.
+\end{note}
+
+\subsection{平移变换}
+
+\begin{theorem}[平移法则：左加右减，上加下减]
+	设原函数为 $y=f(x)$，常数 $a>0, b>0$.
+	\begin{itemize}
+		\item \textbf{左右平移 (影响$x$)}:
+		\begin{itemize}
+			\item 将图像向\textbf{右}平移 $a$ 个单位，得到 $y = f(x-a)$.
+			\item 将图像向\textbf{左}平移 $a$ 个单位，得到 $y = f(x+a)$.
+		\end{itemize}
+		\item \textbf{上下平移 (影响$y$)}:
+		\begin{itemize}
+			\item 将图像向\textbf{上}平移 $b$ 个单位，得到 $y = f(x) + b$.
+			\item 将图像向\textbf{下}平移 $b$ 个单位，得到 $y = f(x) - b$.
+		\end{itemize}
+	\end{itemize}
+\end{theorem}
+\begin{proof}[怎么来的？]
+	设原图像 $y_0=f(x_0)$ 上一点 $(x_0, y_0)$，向右平移 $a$ 个单位后得到新图像上的一点 $(x,y)$.
+	根据平移的定义，新旧坐标的关系是：
+	$\begin{cases} x = x_0 + a \\ y = y_0 \end{cases}$
+	
+	为了得到新坐标 $x,y$ 满足的方程，我们需要用它们来表示旧坐标：
+	$\begin{cases} x_0 = x-a \\ y_0 = y \end{cases}$
+	
+	将此关系代入原方程 $y_0=f(x_0)$ 中，得到：
+	$y = f(x-a)$.
+	这就解释了为什么向右平移是“减$a$”.同理可证其他三种情况.
+\end{proof}
+\qed
+
+\subsection{对称变换}
+
+\begin{theorem}[对称变换法则]
+	设原函数为 $y=f(x)$.
+	\begin{itemize}
+		\item 关于 \textbf{x轴} 对称，得到 $y = -f(x)$.
+		\item 关于 \textbf{y轴} 对称，得到 $y = f(-x)$.
+		\item 关于 \textbf{原点} 对称，得到 $y = -f(-x)$.
+		\item 关于直线 \textbf{y=x} 对称，得到 $x = f(y)$ (即反函数).
+	\end{itemize}
+\end{theorem}
+\begin{proof}[原理推导：以关于y轴对称例]
+	设原图像上一点 $(x_0, y_0)$，关于y轴对称后得到新点 $(x,y)$.
+	根据对称点的坐标关系，有：
+	$\begin{cases} x = -x_0 \\ y = y_0 \end{cases} \implies \begin{cases} x_0 = -x \\ y_0 = y \end{cases}$
+	
+	代入原方程 $y_0=f(x_0)$，得 $y=f(-x)$.
+\end{proof}
+\qed
+
+\subsubsection*{原函数与导函数的对称性}
+\begin{theorem}
+	如果一个可导函数 $y=f(x)$ 的图像关于直线 $x=a$ 对称，那么其导函数 $y=f'(x)$ 的图像必关于点 $(a,0)$ 中心对称.
+\end{theorem}
+\begin{proof}
+	\textbf{代数证明}:
+	函数 $f(x)$ 图像关于 $x=a$ 对称，即 $f(a-x)=f(a+x)$.
+	对此恒等式两边同时对 $x$ 求导（注意使用链式法则）：
+	$[f(a-x)]' = [f(a+x)]'$
+	$f'(a-x) \cdot (a-x)' = f'(a+x) \cdot (a+x)'$
+	$f'(a-x) \cdot (-1) = f'(a+x) \cdot 1$
+	$-f'(a-x) = f'(a+x)$
+	
+	令 $g(x) = f'(x)$，则上式变为 $-g(a-x)=g(a+x)$.
+	这正是函数 $g(x)$ 图像关于点 $(a,0)$ 中心对称的代数表达式.
+	
+	\textbf{几何直观}:
+	在对称轴 $x=a$ 两侧对称的位置，如 $a-x$ 和 $a+x$ 处，原函数的“坡度”大小是相等但方向是相反的.例如，如果在 $a+x$ 处是上坡，斜率为 $k$，那么在对称的 $a-x$ 处必然是同样陡峭的下坡，斜率为 $-k$.因此导函数值互为相反数，图像关于点 $(a,0)$ 中心对称.
+\end{proof}
+\qed
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale=1.2]
+		\begin{scope}
+			\node[above] at (1.5, 2.5) {原函数 $y=f(x)$};
+			\draw[->] (-0.5,0) -- (4,0) node[below] {$x$};
+			\draw[->] (0,-0.5) -- (0,2.5) node[left] {$y$};
+			\draw[red, dashed] (2, -0.5) -- (2, 2.5) node[above] {$x=2$};
+			\draw[blue, thick] plot[smooth] coordinates {(0,2) (1,0.5) (2,0.2) (3,0.5) (4,2)};
+			\draw[green!50!black, -{Latex}] (3,0.5) -- (3.5, 1.25) node[right]{$k_1>0$};
+			\draw[green!50!black, -{Latex}] (1,0.5) -- (0.5, 1.25) node[left]{$k_2<0$};
+			\node[below, green!50!black] at (2,0.5) {$k_1=-k_2$};
+		\end{scope}
+		\begin{scope}[xshift=6cm]
+			\node[above] at (1.5, 2.5) {导函数 $y=f'(x)$};
+			\draw[->] (-0.5,0) -- (4,0) node[below] {$x$};
+			\draw[->] (0,-2.5) -- (0,2.5) node[left] {$y$};
+			\draw[red, dashed] (2, -2.5) -- (2, 2.5);
+			\fill[red] (2,0) circle (2pt) node[below right] {$(2,0)$};
+			\draw[purple, thick] plot[smooth] coordinates {(0,-2) (1,-1) (2,0) (3,1) (4,2)};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{轴对称的原函数与中心对称的导函数}
+\end{figure}
+
+\subsection{伸缩变换}
+伸缩变换改变的是图像的“胖瘦”和“高矮”，同样遵循坐标映射的原理.
+
+\begin{theorem}[伸缩变换法则]
+	设原函数为 $y=f(x)$，常数 $\omega>0, A>0$.
+	\begin{itemize}
+		\item \textbf{横向伸缩 (改变$x$，与$\omega$反向)}:
+		\begin{itemize}
+			\item 将图像上所有点的横坐标变为原来的 $\frac{1}{\omega}$ 倍（纵坐标不变），得到 $y=f(\omega x)$.
+			\item 当 $\omega>1$ 时，是\textbf{压缩}；当 $0<\omega<1$ 时，是\textbf{伸长}.
+		\end{itemize}
+		\item \textbf{纵向伸缩 (改变$y$，与$A$同向)}:
+		\begin{itemize}
+			\item 将图像上所有点的纵坐标变为原来的 $A$ 倍（横坐标不变），得到 $y=A f(x)$.
+			\item 当 $A>1$ 时，是\textbf{伸长}；当 $0<A<1$ 时，是\textbf{压缩}.
+		\end{itemize}
+	\end{itemize}
+\end{theorem}
+\begin{proof}[怎么来的？]
+	设原图像上一点 $(x_0, y_0)$，变换后得到新点 $(x,y)$.
+	新旧坐标的关系是：$\begin{cases} x = \frac{1}{\omega}x_0 \\ y = y_0 \end{cases} \implies \begin{cases} x_0 = \omega x \\ y_0 = y \end{cases}$
+	代入原方程 $y_0=f(x_0)$，得 $y=f(\omega x)$.
+\end{proof}
+\qed
+
+\subsection{翻折变换}
+带绝对值的函数图像，其本质是一种翻折操作.
+
+\begin{theorem}[翻折变换法则]
+	\begin{enumerate}
+		\item \textbf{对 $x$ 加绝对值：$y=f(|x|)$ (偶函数化)}
+		\begin{itemize}
+			\item \textbf{原理}: $f(|x|) = \begin{cases} f(x), & x \ge 0 \\ f(-x), & x < 0 \end{cases}$.
+			\item \textbf{操作}:
+			\begin{enumerate}
+				\item 保留原函数 $y=f(x)$ 图像在 \textbf{y轴右侧} 的部分 (包括y轴上的点).
+				\item 擦去y轴左侧的部分.
+				\item 将右侧保留的图像\textbf{关于y轴对称}翻折到左侧.
+			\end{enumerate}
+			\item \textbf{结果}: 新图像是一个偶函数.
+		\end{itemize}
+		
+		\item \textbf{对 $f(x)$ 加绝对值：$y=|f(x)|$}
+		\begin{itemize}
+			\item \textbf{原理}: $|f(x)| = \begin{cases} f(x), & f(x) \ge 0 \\ -f(x), & f(x) < 0 \end{cases}$.
+			\item \textbf{操作}:
+			\begin{enumerate}
+				\item 保留原函数 $y=f(x)$ 图像在 \textbf{x轴上方} 的部分 (包括x轴上的点).
+				\item 将x轴下方的部分\textbf{关于x轴对称}翻折到上方.
+			\end{enumerate}
+			\item \textbf{结果}: 新图像完全位于x轴上方或x轴上.
+		\end{itemize}
+	\end{enumerate}
+\end{theorem}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale=1]
+		\begin{scope}
+			\node[above] at (0,2.5) {$y=f(x)=\sin(x-\pi/4)$};
+			\draw[->] (-3.5,0) -- (3.5,0) node[below] {$x$};
+			\draw[->] (0,-1.5) -- (0,2) node[left] {$y$};
+			\draw[blue, thick, domain=-3:3] plot (\x, {sin((\x-pi/4) r)});
+		\end{scope}
+		
+		\begin{scope}[xshift=8cm]
+			\node[above] at (0,2.5) {$y=f(|x|)$};
+			\draw[->] (-3.5,0) -- (3.5,0) node[below] {$x$};
+			\draw[->] (0,-1.5) -- (0,2) node[left] {$y$};
+			\draw[red, thick, domain=0:3] plot (\x, {sin((\x-pi/4) r)});
+			\draw[red, thick, domain=-3:0] plot (\x, {sin((-\x-pi/4) r)});
+			\draw[dashed, gray, domain=-3:0] plot (\x, {sin((\x-pi/4) r)});
+		\end{scope}
+		
+		\begin{scope}[yshift=-4.5cm]
+			\node[above] at (0,2.5) {$y=|f(x)|$};
+			\draw[->] (-3.5,0) -- (3.5,0) node[below] {$x$};
+			\draw[->] (0,-0.2) -- (0,2) node[left] {$y$};
+			\draw[purple, thick, domain=-3:3, samples=200] plot (\x, {abs(sin((\x-pi/4) r))});
+			\draw[dashed, gray, domain=-3:3] plot (\x, {sin((\x-pi/4) r)});
+		\end{scope}
+	\end{tikzpicture}
+	\caption{两种翻折变换的对比}
+\end{figure}
+
+
+\section{常见多项式函数探究}
+
+
+\lettrine{多}{项式函数}，是学习函数时基础之基础. 在本节中，我们将快速回顾早已熟知的一次和二次函数，随后将目光聚焦于一位更为重要的主角——\textbf{三次函数}.我们将深入挖掘其独特的对称性、单调性变化规律，并为你揭开一个强有力的代数工具——三次函数根与系数的关系（韦达定理）的神秘面纱.
+
+
+\subsection{复习：一次函数与二次函数}
+
+\subsubsection*{一次函数：$y=kx+b \ (k\neq 0)$}
+\begin{itemize}
+	\item \textbf{图像}: 一条直线.
+	\item \textbf{单调性}: 由斜率 $k$ 决定.若 $k>0$，全域单调递增；若 $k<0$，全域单调递减.
+	\item \textbf{对称性}: 图像关于其上的任意一点 $(x_0, y_0)$ 都是中心对称的.
+\end{itemize}
+
+\subsubsection*{二次函数：$y=ax^2+bx+c \ (a\neq 0)$}
+\begin{itemize}
+	\item \textbf{图像}: 一条抛物线.
+	\item \textbf{单调性与最值}: 由开口方向 $a$ 和对称轴 $x=-\frac{b}{2a}$ 共同决定.
+	\item \textbf{对称性}: 图像是轴对称图形，对称轴为直线 $x=-\frac{b}{2a}$.
+	\item \textbf{根与系数关系 (韦达定理)}: 若方程 $ax^2+bx+c=0$ 的两根为 $x_1, x_2$，则 $x_1+x_2 = -\frac{b}{a}, \ x_1x_2 = \frac{c}{a}$.
+\end{itemize}
+
+\subsection{三次函数: $f(x) = ax^3+bx^2+cx+d \ (a \neq 0)$}
+
+三次函数是研究复杂函数性质的起始点.它的导数是二次函数，这使得我们可以利用熟悉的二次函数工具来精确分析三次函数的单调性、极值等核心性质.
+
+\subsubsection*{三次函数的图像与单调性}
+对 $f(x)$ 求导，得 $f'(x) = 3ax^2+2bx+c$.这是一个二次函数，其性质决定了原函数 $f(x)$ 的形态.
+令 $\Delta$ 为导函数 $f'(x)$ 的判别式，即 $\Delta = (2b)^2 - 4(3a)c = 4(b^2-3ac)$.
+
+\begin{enumerate}
+	\item \textbf{情况一：$\Delta > 0$ (有两个极值点)}
+	导函数 $f'(x)=0$ 有两个不相等的实根 $x_1, x_2$.这意味着原函数 $f(x)$ 有两个极值点.图像呈现出典型的“N”形或倒“N”形.
+	
+	\item \textbf{情况二：$\Delta \le 0$ (全域单调)}
+	导函数 $f'(x)$ 的图像与x轴只有一个交点或没有交点，即 $f'(x)$ 恒大于等于0（当$a>0$时）或恒小于等于0（当$a<0$时）.这意味着原函数 $f(x)$ 在 $\mathbb{R}$ 上是\textbf{单调函数}，\textbf{没有极值点}.
+	\begin{itemize}
+		\item 当 $\Delta=0$ 时，存在一个点 $x_0$ 使得 $f'(x_0)=0$，该点被称为\textbf{拐点}，函数图像在此点附近“放缓了脚步”，但并未改变单调性.
+		\item 当 $\Delta<0$ 时，导函数恒不为0，函数图像呈现出一种一路狂奔且没有任何停留的样子.
+	\end{itemize}
+\end{enumerate}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale=0.9, every node/.style={font=\small}]
+		\begin{scope}
+			\node[above] at (0,2.2) {$\Delta>0$ (两极值点)};
+			\draw[->] (-2,0) -- (2,0) node[below] {$x$}; \draw[->] (0,-2) -- (0,2) node[left] {$y$};
+			\draw[blue, thick] plot[smooth] coordinates {(-1.8, -1.5) (-1,1) (1,-1) (1.8,1.5)};
+		\end{scope}
+		\begin{scope}[xshift=5cm]
+			\node[above] at (0,2.2) {$\Delta=0$ (单调，有拐点)};
+			\draw[->] (-2,0) -- (2,0) node[below] {$x$}; \draw[->] (0,-2) -- (0,2) node[left] {$y$};
+			\draw[blue, thick] plot[smooth] coordinates {(-1.8, -1.8) (0,0) (1.8,1.8)};
+			\fill[red] (0,0) circle (2pt) node[right]{拐点};
+		\end{scope}
+		\begin{scope}[xshift=10cm]
+			\node[above] at (0,2.2) {$\Delta<0$ (单调，无拐点)};
+			\draw[->] (-2,0) -- (2,0) node[below] {$x$}; \draw[->] (0,-2) -- (0,2) node[left] {$y$};
+			\draw[blue, thick] plot[smooth] coordinates {(-1.5, -2) (0,0) (1.5,2)};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{三次函数的三种基本形态 ($a>0$)}
+\end{figure}
+
+\subsubsection*{三次函数的对称性}
+\begin{theorem}
+	\textbf{任何一个}三次函数 $f(x)=ax^3+bx^2+cx+d$ 的图像都是\textbf{中心对称图形}，其对称中心是\textbf{拐点} $(x_0, f(x_0))$.
+\end{theorem}
+\begin{proof}[思路]
+	对称中心的横坐标 $x_0$ 是导函数 $f'(x)=3ax^2+2bx+c$ 图像的对称轴.
+	$x_0 = -\frac{2b}{2(3a)} = -\frac{b}{3a}$.
+	该点也是二阶导数 $f''(x)=6ax+2b$ 的零点，即 $f''(x_0)=0$.在高数中，二阶导数的零点正是函数的拐点.
+\end{proof}
+\qed
+
+\begin{note}[一个重要的推论]
+	若三次函数 $f(x)$ 有两个极值点 $x_1, x_2$，则：
+	\begin{itemize}
+		\item 对称中心的横坐标 $x_0 = \frac{x_1+x_2}{2}$.
+		\item 两个极值点 $(x_1, f(x_1))$ 和 $(x_2, f(x_2))$ 关于对称中心 $(x_0, f(x_0))$ 成中心对称.
+		\item 两个极值的和等于对称中心函数值的2倍：$f(x_1)+f(x_2)=2f(\frac{x_1+x_2}{2})$.
+	\end{itemize}
+\end{note}
+
+\subsubsection*{三次函数的根与系数关系 (韦达定理)}
+当我们需要研究三次函数 $f(x)$ 与 x 轴的交点（即方程 $ax^3+bx^2+cx+d=0$ 的根）时，韦达定理是一个极其有力的工具.
+
+\begin{theorem}[三次函数韦达定理]
+	设方程 $ax^3+bx^2+cx+d=0$ 的三个根为 $x_1, x_2, x_3$ （可是复数根，但一般不涉及），则它们与系数之间满足以下关系：
+	\begin{align}
+		x_1 + x_2 + x_3 &= -\frac{b}{a} \quad &\text{(三根之和)} \\
+		x_1x_2 + x_1x_3 + x_2x_3 &= \frac{c}{a} \quad &\text{(三根两两乘积之和)} \\
+		x_1x_2x_3 &= -\frac{d}{a} \quad &\text{(三根之积)}
+	\end{align}
+\end{theorem}
+\begin{proof}
+	既然 $x_1, x_2, x_3$ 是方程的三个根，那么根据因式定理，多项式 $ax^3+bx^2+cx+d$ 一定可以被分解为：
+	$a(x-x_1)(x-x_2)(x-x_3)$
+	
+	我们将右侧的因式展开：
+	$a[(x^2 - (x_1+x_2)x + x_1x_2)(x-x_3)]$
+	$= a[x^3 - x_3x^2 - (x_1+x_2)x^2 + (x_1+x_2)x_3x + x_1x_2x - x_1x_2x_3]$
+	
+	合并同类项：
+	$= a[x^3 - (x_1+x_2+x_3)x^2 + (x_1x_2+x_1x_3+x_2x_3)x - x_1x_2x_3]$
+	
+	现在，我们将这个展开式与原多项式 $ax^3+bx^2+cx+d$ 的系数进行比较：
+	$ax^3 - a(x_1+x_2+x_3)x^2 + a(x_1x_2+\dots)x - a(x_1x_2x_3)$
+	对比 $x^2$ 项：$b = -a(x_1+x_2+x_3) \implies x_1+x_2+x_3 = -\frac{b}{a}$.
+	对比 $x$ 项：$c = a(x_1x_2+x_1x_3+x_2x_3) \implies x_1x_2+x_1x_3+x_2x_3 = \frac{c}{a}$.
+	对比常数项：$d = -a(x_1x_2x_3) \implies x_1x_2x_3 = -\frac{d}{a}$.
+\end{proof}
+\qed
+
+\begin{note}[如何记忆？]
+	\begin{itemize}
+		\item \textbf{符号规律}：从高次项到低次项，符号是“\textbf{负、正、负}”交替.
+		\item \textbf{结构规律}：分母永远是最高次项系数 $a$.分子按顺序是 $b, c, d$.
+		\item \textbf{组合意义}：一次取一个根求和、一次取两个根求和、一次取三个根求和.
+	\end{itemize}
+\end{note}
+
+\subsubsection*{三次函数的重要结论与应用}
+
+\begin{enumerate}
+	\item \textbf{切线问题}:
+	过三次函数图像上任意一点 $(x_0, f(x_0))$ \textbf{只能作一条}切线，该切线的斜率为 $f'(x_0)$.
+	但过图像外的某一点，可能可以作出多条切线.
+	
+	\item \textbf{根的分布}:
+	利用函数的单调性和极值，可以判断三次方程实根的个数.
+	\begin{itemize}
+		\item 若函数没有极值（全域单调），则方程必有\textbf{唯一实根}.
+		\item 若函数有两个极值点，且两个极值\textbf{同号}（即 $f(x_1)f(x_2)>0$），则方程有\textbf{唯一实根}.
+		\item 若两个极值\textbf{异号}（即 $f(x_1)f(x_2)<0$），则方程有\textbf{三个不等实根}.
+		\item 若一个极值为0（即 $f(x_1)f(x_2)=0$），则方程有\textbf{两个不等实根}（其中一个是二重根）.
+	\end{itemize}
+	
+	\item \textbf{穿根切线}:
+	在三次函数的任意一个拐点 $(x_0, f(x_0))$ 处作切线，该切线会“穿过”函数图像，被称为\textbf{穿根切线}.
+	
+	\item \textbf{等面积性质}:
+	由任意极值点和拐点确定的区域面积具有特定比例，这是更深入的结论，在某些难题中可作为快速解题的背景知识.
+\end{enumerate}

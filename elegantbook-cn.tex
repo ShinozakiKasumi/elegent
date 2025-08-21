@@ -1,0 +1,118 @@
+\documentclass[lang=cn,12pt,chinesefont=founder]{elegantbook}
+
+\title{高中数学基础一本通}
+\author{Midnight Forever (永远是深夜有多好)}
+\date{\today}
+\version{20250715}
+\extrainfo{请尊重作者个人的编写编辑的知识成果.}
+
+\definecolor{customcolor}{RGB}{255,20,147}
+\colorlet{coverlinecolor}{customcolor}
+\logo{image/logo.png}
+\cover{image/cover.png}
+\setcounter{tocdepth}{3}
+
+\usepackage{tikz}                  
+\usetikzlibrary{trees, arrows.meta, patterns} 
+\usetikzlibrary{positioning}
+\usepackage{booktabs}   
+\usepackage{tabularx}  
+\usepackage{float}     
+\usepackage{amsmath}  
+\usepackage{amsfonts}  
+\usepackage{amssymb}    
+\usepackage{fancyhdr}   
+\usepackage{xcolor}
+\usepackage{lettrine}  
+
+
+\newcommand{\qed}{\hfill $\Box$}
+\newcommand{\makechapteropener}[4]{
+	\newpage
+	\thispagestyle{empty} 
+	
+	\vspace*{\fill} 
+	
+	\begin{center}
+		{\songti \Huge 第#1章}
+		\vspace{2cm} 
+		{\heiti \huge #2}
+	\end{center}
+	
+	\vfill 
+	
+	\begin{center}
+		\begin{minipage}{0.75\textwidth} 
+			\centering 
+			{\kaishu \large “#3”} 
+			\par\vspace{1em} 
+			\begin{flushright} 
+				--- #4
+			\end{flushright}
+		\end{minipage}
+	\end{center}
+	
+	\vspace*{2cm}
+	\cleardoublepage 
+}
+
+
+\begin{document}
+	
+	\maketitle
+	
+\begin{titlepage}
+	\begin{center} 
+		
+		\vspace*{3cm} 
+		
+		% --- 标题 ---
+		{\Huge\bfseries\kaishu 高中数学基础一本通\par} 
+		
+		\vspace{5cm}
+		
+		% --- 作者 ---
+		{\LARGE 作者\par}
+		\vspace{0.7cm}
+		{\Large Midnight Forever (永远是深夜有多好)\par}
+		
+		\vfill 
+		
+		{\large
+			版本号：20250715 \par
+			\vspace{0.2cm}
+			日期：\today \par
+		}
+		
+		\vspace{2cm}
+		
+		{\itshape 请尊重作者个人的编写编辑的知识成果。} 
+		
+	\end{center}
+\end{titlepage}
+	
+
+	\frontmatter
+	\tableofcontents
+	
+	\mainmatter 
+
+	\pagestyle{fancy}
+
+	\fancyhf{}
+	
+	\fancyhead[LE]{\leftmark}
+	\fancyhead[RO]{\rightmark}
+	
+	\renewcommand{\headrulewidth}{0.4pt}
+	
+	
+	\fancyfoot[C]{编者：Midnight Forever (永远是深夜有多好)}
+	\fancyfoot[RO,LE]{\thepage}
+
+	\include{chapters/前言.tex}
+	\include{chapters/基础.tex}
+	\include{chapters/集合.tex}
+	\include{chapters/不等式.tex}
+	\include{chapters/函数.tex}
+\end{document}

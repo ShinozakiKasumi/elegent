@@ -1,0 +1,212 @@
+	\makechapteropener
+	{二}
+	{集合与逻辑}
+	{没有人能将我们从康托创造的这个乐园中驱逐出去。} 
+	{大卫·希尔伯特 (David Hilbert)} 
+	
+	\chapter{集合与逻辑用语}
+
+	\lettrine{欢}{迎开启}高中数学复习的第一站——集合与逻辑用语. 尽管本章在高考数学中，经常出现在前三道选择题，并且难度都相对简单，是几秒钟就能拿下的“送分题”，但不可否认的是，近年来也有不少卷子以本章为命题点，专门命制一些易错基础题，而为了应付这些易错基础题，复习基础知识是必要的.
+	
+	本章也是整个高中数学大厦的基石，它所提供的语言、工具和思想方法将贯穿我们后续学习的始终. 集合论为我们提供了描述数学对象的基本语言；逻辑用语是我们进行严谨数学推理的准则. 学好本章，往后章节的学习才能事半功倍.
+
+\begin{introduction}[知识概括]
+	\item \textbf{集合:} 核心在于理解集合的“三性”（确定性、互异性、无序性），掌握元素与集合、集合与集合之间的关系（属于、包含、相等），并熟练运用集合的交、并、补运算. 特别注意 Venn 图和数轴在解决集合问题中的直观应用.
+	\item \textbf{逻辑:} 理解充分条件、必要条件与充要条件的内涵，并能准确判断. 同时，要掌握全称量词与存在量词的含义，并能对含有一个量词的命题进行否定.
+\end{introduction}
+	
+	\section{集合}
+	
+	集合理论是德国数学家康托尔在19世纪末创立的，是现代数学的基础.在高中阶段，我们将其作为一种语言来学习，用于准确、简洁地描述数学对象.
+	
+	\subsection{集合的基本概念}
+	
+	\begin{definition}[集合] \label{def:set}
+		通常，我们把一些确定的、可以区分的事物看成一个整体，这个整体就称为\textbf{集合}.组成集合的每个事物称为该集合的\textbf{元素}.
+	\end{definition}
+	
+	\begin{note}
+		集合中的元素具有以下三个特性：
+		\begin{enumerate}
+			\item \textbf{确定性}：给定一个集合，任何一个对象是不是这个集合的元素是确定的.
+			\item \textbf{互异性}：一个集合中的元素是互不相同的，每个元素只能出现一次.
+			\item \textbf{无序性}：集合中的元素没有固定的顺序，$\{1, 2, 3\}$ 与 $\{3, 1, 2\}$ 是同一个集合.
+		\end{enumerate}
+	\end{note}
+	
+	我们通常用大写字母 $A, B, C, \dots$ 表示集合，用小写字母 $a, b, c, \dots$ 表示元素.$a$ 是集合 $A$ 的元素，记作 $a \in A$；$a$ 不是集合 $A$ 的元素，记作 $a \notin A$.
+	
+	\subsubsection{集合的表示方法}
+	\begin{enumerate}
+		\item \textbf{列举法}：将集合中的所有元素一一列举出来，并用花括号“\{\}”括起来.
+		\item \textbf{描述法}：用符号描述集合中元素的共同特征，格式为 $\{x \mid p(x)\}$.
+		\item \textbf{韦恩图法}：用平面上的封闭曲线的内部来表示集合，非常直观.
+	\end{enumerate}
+	
+	\begin{property}[常用数集] \label{property:common_sets}
+		\begin{itemize}
+			\item 非负整数集（自然数集）：$\mathbb{N}$
+			\item 正整数集：$\mathbb{N}^*$ 或 $\mathbb{N}_+$
+			\item 整数集：$\mathbb{Z}$
+			\item 有理数集：$\mathbb{Q}$
+			\item 实数集：$\mathbb{R}$
+		\end{itemize}
+	\end{property}
+	
+	\subsection{集合间的基本关系}
+	
+	\begin{definition}[子集与相等] \label{def:subset}
+		\begin{itemize}
+			\item \textbf{子集}：若集合 $A$ 中任意元素都是集合 $B$ 的元素，则称 $A$ 是 $B$ 的子集.记作 $A \subseteq B$.
+			\item \textbf{真子集}：若 $A \subseteq B$，且 $B$ 中至少有一个元素不属于 $A$，则称 $A$ 是 $B$ 的真子集.记作 $A \subsetneq B$.
+			\item \textbf{相等}：若 $A \subseteq B$ 且 $B \subseteq A$，则 $A$ 与 $B$ 相等.记作 $A=B$.
+		\end{itemize}
+	\end{definition}
+	
+	\begin{note}[易错点辨析]
+		符号 $\in$ 表示元素与集合的“属于”关系，而 $\subseteq$ 表示集合与集合的“包含”关系.例如，$0 \in \{0,1\}$，而 $\{0\} \subseteq \{0,1\}$.同时要注意区分 $0$, $\emptyset$, $\{0\}$：$0$ 是一个数字；$\emptyset$ 是不含任何元素的集合（空集）；$\{0\}$ 是含有一个元素 $0$ 的集合.
+	\end{note}
+	
+	\begin{property}[空集] \label{property:empty_set}
+		空集是不含任何元素的集合，记作 $\emptyset$.
+		\begin{enumerate}
+			\item 空集是任何集合的子集：$\emptyset \subseteq A$.
+			\item 空集是任何非空集合的真子集.
+		\end{enumerate}
+	\end{property}
+	
+	\begin{note}[解题要点]
+		在处理 $A \subseteq B$ 的问题时，若集合 $A$ 含有参数，必须养成优先讨论 $A = \emptyset$ 是否满足题意的习惯，这是最常见的陷阱之一.
+	\end{note}
+	
+	一个含有 $n$ 个元素的有限集合，其子集个数为 $2^n$，真子集个数为 $2^n - 1$.
+	
+	\subsection{集合的基本运算}
+	
+	\begin{definition}[并集、交集、补集] \label{def:set_operations}
+		设 $A, B$ 为集合， $U$ 为全集.
+		\begin{itemize}
+			\item \textbf{交集}：$A \cap B = \{x \mid x \in A \text{ 且 } x \in B\}$
+			\item \textbf{并集}：$A \cup B = \{x \mid x \in A \text{ 或 } x \in B\}$
+			\item \textbf{补集}：$\complement_U A = \{x \mid x \in U \text{ 且 } x \notin A\}$
+		\end{itemize}
+	\end{definition}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[scale=0.9]
+			% 交集
+			\begin{scope}
+				\draw (0,0) circle (1.2) node[above left] {$A$};
+				\draw (1.5,0) circle (1.2) node[above right] {$B$};
+				\begin{scope}
+					\clip (0,0) circle (1.2);
+					\fill[pattern=north east lines] (1.5,0) circle (1.2);
+				\end{scope}
+				\node at (0.75,-1.8) {$A \cap B$};
+			\end{scope}
+			
+			% 并集
+			\begin{scope}[xshift=5cm]
+				\draw (0,0) circle (1.2) node[above left] {$A$};
+				\draw (1.5,0) circle (1.2) node[above right] {$B$};
+				\fill[pattern=north east lines] (0,0) circle (1.2);
+				\fill[pattern=north east lines] (1.5,0) circle (1.2);
+				\node at (0.75,-1.8) {$A \cup B$};
+			\end{scope}
+			
+			% 补集
+			\begin{scope}[xshift=10cm]
+				\draw (-1.8,-1.5) rectangle (1.8,1.5) node[above right] {$U$};
+				\draw (0,0) circle (1) node {$A$};
+				\begin{scope}
+					\clip (-1.8,-1.5) rectangle (1.8,1.5);
+					\fill[pattern=north east lines] (-1.8,-1.5) rectangle (1.8,1.5);
+					\fill[white] (0,0) circle (1);
+				\end{scope}
+				\node at (0,-1.8) {$\complement_U A$};
+			\end{scope}
+		\end{tikzpicture}
+		\caption{交集、并集与补集的韦恩图表示}
+	\end{figure}
+	
+	\begin{property}[集合运算律]
+		\begin{enumerate}
+			\item 交换律：$A \cap B = B \cap A$; $A \cup B = B \cup A$
+			\item 结合律：$(A \cap B) \cap C = A \cap (B \cap C)$; $(A \cup B) \cup C = A \cup (B \cup C)$
+			\item 分配律：$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$; $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+		\end{enumerate}
+	\end{property}
+	
+	\begin{note}[重要结论转换]
+		集合的运算与包含关系可以相互转化，这在解决抽象集合问题时尤为关键：
+		\begin{itemize}
+			\item $A \cap B = A \iff A \subseteq B$
+			\item $A \cup B = B \iff A \subseteq B$
+			\item $A \cap (\complement_U B) = \emptyset \iff A \subseteq B$
+		\end{itemize}
+	\end{note}
+	
+	\section{常用逻辑用语}
+	
+	逻辑是数学严谨性的保证，本节将帮助你理清命题关系，准确判断条件.
+	
+	\subsection{命题及其关系}
+	
+	\begin{definition}[命题]
+		能够判断真假的陈述句称为\textbf{命题}.真命题的真值为真，假命题的真值为假.
+	\end{definition}
+	
+	对于形如“若 $p$，则 $q$”的命题，$p$ 称为条件，$q$ 称为结论.
+	
+	\begin{definition}[四种命题] 
+		以“若 $p$，则 $q$”为\textbf{原命题}：
+		\begin{itemize}
+			\item \textbf{逆命题}：若 $q$，则 $p$.（交换条件与结论）
+			\item \textbf{否命题}：若非 $p$，则非 $q$.（否定条件与结论）
+			\item \textbf{逆否命题}：若非 $q$，则非 $p$.（先交换，再否定）
+		\end{itemize}
+	\end{definition}
+	
+	\begin{theorem}[命题等价关系] 
+		一个命题与它的逆否命题具有相同的真假性，它们是\textbf{等价}的.
+		一个命题的逆命题与它的否命题也是等价的.
+	\end{theorem}
+	
+	\begin{note}
+		在高考中，对含有量词的命题进行否定是一个高频考点.无论原命题真假，其否定形式都遵循唯一法则：\textbf{换量词，否结论}.
+		\begin{itemize}
+			\item 否定全称命题“对\textbf{所有} $x$，$p(x)$ 都成立”：结果是特称命题“\textbf{存在}一个 $x_0$，使得 $p(x_0)$ \textbf{不}成立”.
+			($\forall$ 变 $\exists$, $p(x)$ 变 $\neg p(x)$)
+			\item 否定特称命题“\textbf{存在}一个 $x_0$，使得 $p(x_0)$ 成立”：结果是全称命题“对\textbf{所有} $x$，$p(x)$ 都\textbf{不}成立”.
+			($\exists$ 变 $\forall$, $p(x)$ 变 $\neg p(x)$)
+		\end{itemize}
+	\end{note}
+	
+	\subsection{充分条件与必要条件}
+	
+	\begin{definition}[充分与必要条件]
+		对于命题“若 $p$，则 $q$”：
+		\begin{itemize}
+			\item 如果该命题为真 ($p \Rightarrow q$)，则称 $p$ 是 $q$ 的\textbf{充分条件}，$q$ 是 $p$ 的\textbf{必要条件}.
+			\item 如果 $p \Rightarrow q$ 但 $q \nRightarrow p$，则 $p$ 是 $q$ 的\textbf{充分不必要条件}.
+			\item 如果 $p \nRightarrow q$ 但 $q \Rightarrow p$，则 $p$ 是 $q$ 的\textbf{必要不充分条件}.
+			\item 如果 $p \iff q$，则 $p$ 是 $q$ 的\textbf{充分必要条件}（简称\textbf{充要条件}）.
+			\item 如果 $p \nRightarrow q$ 且 $q \nRightarrow p$，则 $p$ 是 $q$ 的\textbf{既不充分也不必要条件}.
+		\end{itemize}
+	\end{definition}
+	
+	\begin{note}[集合法]
+		判断条件的类型，最直观有效的方法之一是“集合法”.将条件 $p$ 和结论 $q$ 看作两个集合 $A$ 和 $B$（$A = \{x \mid p(x) \text{为真}\}$，$B = \{x \mid q(x) \text{为真}\}$），则：
+		\begin{itemize}
+			\item 若 $A \subsetneq B$，则 $p$ 是 $q$ 的充分不必要条件.
+			\item 若 $B \subsetneq A$，则 $p$ 是 $q$ 的必要不充分条件.
+			\item 若 $A = B$，则 $p$ 是 $q$ 的充要条件.
+			\item 若 $A \not\subseteq B$ 且 $B \not\subseteq A$，则 $p$ 是 $q$ 的既不充分也不必要条件.
+		\end{itemize}
+		简记为：“小集推大集”，小范围是充分，大范围是必要.
+	\end{note}
+	
+	\begin{conclusion}
+		本章的集合与逻辑是数学世界的基础设施.集合提供了分类和组织信息的语言，逻辑则提供了推理和证明的规则.熟练地运用韦恩图、数轴分析集合关系，并将条件判断问题转化为集合包含问题，是高效解决本章考题的核心策略.
+	\end{conclusion}
